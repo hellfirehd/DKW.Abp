@@ -1,0 +1,78 @@
+<!--
+The Directory.Build.props is automatically included in all projects in the solution.
+It is used to define common properties and settings that are shared across all projects in the solution.
+
+In this file, we define the following properties:
+
+ImplicitUsings : This property is set to  enable  to enable implicit usings in the project.
+Nullable : This property is set to  enable  to enable nullable reference types in the project.
+
+Title : The title of the project.
+Authors : The authors of the project.
+Company : The company that owns the project.
+Product : The product name.
+Description : A description of the project.
+-->
+<Project>
+
+    <PropertyGroup>
+
+        <Title>Inara ABP</Title>
+        <Authors>dougkwilson</Authors>
+        <Company>Doug Wilson</Company>
+        <Product>Inara ABP</Product>
+        <Description>Addons, customizations, and extensions for the ABP Framework</Description>
+        <Copyright>Copyright 2025 Doug Wilson</Copyright>
+        
+        <ImplicitUsings>enable</ImplicitUsings>
+        <NeutralLanguage>en</NeutralLanguage>
+        <Nullable>enable</Nullable>
+        
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <PackageIcon>INARA.png</PackageIcon>
+        <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+        <PackageOutputPath>$(SolutionDir)\artifacts</PackageOutputPath>
+        <PackageProjectUrl>https://abp.inara.dkw.io/</PackageProjectUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+        <PackageTags>abp;framework;aspnet;blazor</PackageTags>
+        
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/hellfirehd/Inara.Abp</RepositoryUrl>
+
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\..\..\INARA.png" Pack="true" PackagePath="\" />
+        <None Include="..\..\..\LICENSE" Pack="true" PackagePath="\" />
+        <None Include="..\..\..\README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="ConfigureAwait.Fody" Version="3.3.2" PrivateAssets="All" />
+        <PackageReference Include="Fody" Version="6.9.1">
+            <PrivateAssets>All</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.SourceLink.Gitea" Version="8.*">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.*">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Nerdbank.GitVersioning" Condition="!Exists('packages.config')">
+            <PrivateAssets>all</PrivateAssets>
+            <Version>3.6.146</Version>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="Logs\**" />
+        <Content Remove="Logs\**" />
+        <EmbeddedResource Remove="Logs\**" />
+        <None Remove="Logs\**" />
+    </ItemGroup>
+
+</Project>

@@ -1,2 +1,10 @@
-# Inara.Abp
-Inara ABP is collection of modules that expand and extend the ABP Framework.
+# Inara ABP 
+
+## About
+
+Inara ABP is collection of modules that complement the ABP Framework.
+
+### Dependencies
+
+* [ASP.NET Core Runtime 9.0+ Runtime](https://dotnet.microsoft.com/download/dotnet)
+* [ABP Framework](https://abp.io/)
