@@ -1,6 +1,6 @@
 ﻿namespace Inara.Abp;
 
-public static class InaraKeys
+public static class InaraAbpKeys
 {
     internal const String Key = "InaraAbp";
 
