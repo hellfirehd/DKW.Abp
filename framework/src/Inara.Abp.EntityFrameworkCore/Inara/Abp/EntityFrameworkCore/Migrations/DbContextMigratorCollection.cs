@@ -2,4 +2,4 @@
 
 namespace Inara.Abp.EntityFrameworkCore.Migrations;
 
-public class DatabaseMigratorList : TypeList<IDatabaseMigrator>;
+public class DbContextMigratorCollection : TypeList<IDbContextMigrator>;

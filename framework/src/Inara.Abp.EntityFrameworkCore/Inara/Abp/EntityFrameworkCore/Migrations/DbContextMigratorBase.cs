@@ -4,7 +4,7 @@ using Volo.Abp;
 
 namespace Inara.Abp.EntityFrameworkCore.Migrations;
 
-public abstract class DatabaseMigratorBase
+public abstract class DbContextMigratorBase
 {
     public const String ActivitySourceName = "Migrations";
 
