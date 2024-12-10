@@ -24,15 +24,15 @@ public static class MigrationExtensions
     {
         ArgumentNullException.ThrowIfNull(scope);
 
-        var migrationService = scope.ServiceProvider.GetRequiredService<MigrationManager>();
+        var migrationService = scope.ServiceProvider.GetRequiredService<DbContextMigrationManager>();
 
         await migrationService.MigrateAsync(cancellationToken);
     }
 
-    public static IServiceCollection AddInaraMigrations(this IServiceCollection services, Action<InaraMigrationOptions>? configure = null)
+    public static IServiceCollection AddInaraMigrations(this IServiceCollection services, Action<InaraDbContextMigrationOptions>? configure = null)
     {
         return services
-            .Configure<InaraMigrationOptions>(options => configure?.Invoke(options))
-            .AddScoped<MigrationManager>();
+            .Configure<InaraDbContextMigrationOptions>(options => configure?.Invoke(options))
+            .AddScoped<DbContextMigrationManager>();
     }
 }

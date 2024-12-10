@@ -11,7 +11,7 @@ public class InaraAbpOpenIdEntityFrameworkCorePostgreSqlModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        context.Services.Configure<InaraMigrationOptions>(options =>
+        context.Services.Configure<InaraDbContextMigrationOptions>(options =>
         {
             // This looks like fun!
             options.Migrators.Add<OpenIddictMigrationDbContextMigrator>();
