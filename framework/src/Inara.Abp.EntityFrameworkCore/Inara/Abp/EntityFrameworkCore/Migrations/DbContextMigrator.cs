@@ -7,7 +7,7 @@ using Volo.Abp.DependencyInjection;
 namespace Inara.Abp.EntityFrameworkCore.Migrations;
 
 public class DbContextMigrator<TDbContext>(IServiceProvider serviceProvider)
-    : DatabaseMigratorBase, IDatabaseMigrator, ITransientDependency
+    : DbContextMigratorBase, IDbContextMigrator, ITransientDependency
     where TDbContext : DbContext
 {
     private ILogger? _logger;

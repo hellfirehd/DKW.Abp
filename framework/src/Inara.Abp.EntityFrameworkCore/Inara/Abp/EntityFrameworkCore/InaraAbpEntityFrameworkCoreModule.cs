@@ -15,20 +15,20 @@ public class InaraAbpEntityFrameworkCoreModule : AbpModule
 
     private static void AutoAddDatabaseMigrators(IServiceCollection services)
     {
-        var contributors = new List<Type>();
+        var migrators = new List<Type>();
 
         services.OnRegistered(context =>
         {
-            if (typeof(IDatabaseMigrator).IsAssignableFrom(context.ImplementationType))
+            if (typeof(IDbContextMigrator).IsAssignableFrom(context.ImplementationType))
             {
-                contributors.Add(context.ImplementationType);
+                migrators.Add(context.ImplementationType);
             }
         });
 
-        services.Configure<InaraMigrationOptions>(options =>
+        services.Configure<InaraDbContextMigrationOptions>(options =>
         {
-            // Add all found contributors
-            options.Migrators.AddIfNotContains(contributors);
+            // Add all found migrators
+            options.Migrators.AddIfNotContains(migrators);
         });
     }
 }
