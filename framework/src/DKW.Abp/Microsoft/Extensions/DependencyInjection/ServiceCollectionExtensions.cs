@@ -1,4 +1,4 @@
-﻿using DKW.Abp;
+using DKW.Abp;
 using Microsoft.Extensions.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection;
