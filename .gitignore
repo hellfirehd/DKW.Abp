@@ -397,7 +397,7 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-# Inara.Abp
+# DKW.Abp
 **/Logs
 appsettings.*.json
 resources/

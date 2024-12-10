@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace />
+        <TargetFramework>net9.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\DKW.Abp.IdGeneration.Application.Contracts\DKW.Abp.IdGeneration.Application.Contracts.csproj" />
+    </ItemGroup>
+
+</Project>
