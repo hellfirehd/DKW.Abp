@@ -11,7 +11,7 @@ public static class ServiceCollectionExtensions
     public static String[] GetCorsAllowedOrigins(this IConfiguration configuration)
     {
         var r = configuration
-            .GetSection(InaraKeys.Configuration.CorsAllowedOrigins)
+            .GetSection(InaraAbpKeys.Configuration.CorsAllowedOrigins)
             .Get<String[]>()
             ?? [];
 
