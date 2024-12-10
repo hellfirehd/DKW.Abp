@@ -1,8 +1,8 @@
-# Inara ABP 
+# DKW.ABP 
 
 ## About
 
-Inara ABP is collection of modules that complement the ABP Framework.
+DKW.ABP is collection of modules that complement the ABP Framework.
 
 ### Dependencies
 
