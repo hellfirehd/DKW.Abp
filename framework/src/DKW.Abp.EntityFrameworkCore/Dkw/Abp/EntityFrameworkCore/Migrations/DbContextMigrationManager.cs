@@ -9,14 +9,14 @@ public class DbContextMigrationManager(
         ILogger<DbContextMigrationManager> logger,
         IOptions<DkwDbContextMigrationOptions> options,
         IServiceScopeFactory serviceScopeFactory
-    ) : ITransientDependency
+    ) : IDbContextMigrationManager, ITransientDependency
 {
     private readonly ILogger<DbContextMigrationManager> _logger = logger;
     private readonly DkwDbContextMigrationOptions _options = options.Value;
 
     public IServiceScopeFactory ServiceScopeFactory { get; } = serviceScopeFactory;
 
-    public async Task MigrateAsync(CancellationToken cancellationToken = default)
+    public virtual async Task MigrateAsync(CancellationToken cancellationToken = default)
     {
         _logger.LogInformation("Starting migrations...");
 

@@ -1,7 +1,7 @@
 using DKW.Abp.Logging;
 using Medallion.Threading;
 using Medallion.Threading.Redis;
-using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,12 +42,34 @@ public class DkwAbpMicroserviceModule : AbpModule
         var configuration = context.Services.GetConfiguration();
         var hostingEnvironment = context.Services.GetHostingEnvironment();
 
-        ConfigureLogging(context, configuration);
         ConfigureCache();
-        ConfigureDataProtection(context, configuration, hostingEnvironment);
+        ConfigureCors(context, configuration);
         ConfigureDistributedLocking(context);
+        ConfigureLogging(context, configuration);
 
         context.Services.AddProblemDetails();
+    }
+
+    private static void ConfigureCors(ServiceConfigurationContext context, IConfiguration configuration)
+    {
+        context.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(builder =>
+            {
+                builder
+                    .WithOrigins(
+                        configuration["App:CorsOrigins"]!
+                            .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                            .Select(o => o.RemovePostFix("/"))
+                            .ToArray()
+                    )
+                    .WithAbpExposedHeaders()
+                    .SetIsOriginAllowedToAllowWildcardSubdomains()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+            });
+        });
     }
 
     private static void ConfigureLogging(ServiceConfigurationContext context, IConfiguration configuration)
@@ -58,19 +80,6 @@ public class DkwAbpMicroserviceModule : AbpModule
     private void ConfigureCache()
     {
         Configure<AbpDistributedCacheOptions>(options => options.KeyPrefix = DistributedCacheKeyPrefix);
-    }
-
-    private static void ConfigureDataProtection(
-        ServiceConfigurationContext context,
-        IConfiguration configuration,
-        IWebHostEnvironment hostingEnvironment)
-    {
-        var dataProtectionBuilder = context.Services.AddDataProtection().SetApplicationName("Dkw");
-        if (!hostingEnvironment.IsDevelopment())
-        {
-            var redis = ConnectionMultiplexer.Connect(configuration[RedisConfiguration] ?? "redis");
-            dataProtectionBuilder.PersistKeysToStackExchangeRedis(redis, DataProtectionKey);
-        }
     }
 
     private static void ConfigureDistributedLocking(ServiceConfigurationContext context)
