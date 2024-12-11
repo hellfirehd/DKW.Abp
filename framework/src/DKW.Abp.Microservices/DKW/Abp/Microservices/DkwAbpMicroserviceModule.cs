@@ -11,13 +11,10 @@ using StackExchange.Redis;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
-using Volo.Abp.Caching;
 using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.DistributedLocking;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
-
-using static DKW.Abp.Microservices.ConfigKeys;
 
 namespace DKW.Abp.Microservices;
 
@@ -33,16 +30,14 @@ public class DkwAbpMicroserviceModule : AbpModule
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
-        var redisConnStr = configuration[AspireRedis];
-        configuration[RedisConfiguration] ??= redisConnStr ?? "localhost";
+        var redisConnStr = configuration[DkwAbpMicroserviceKeys.AspireRedis];
+        configuration[DkwAbpMicroserviceKeys.RedisConfiguration] ??= redisConnStr ?? "localhost";
     }
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var configuration = context.Services.GetConfiguration();
-        var hostingEnvironment = context.Services.GetHostingEnvironment();
 
-        ConfigureCache();
         ConfigureCors(context, configuration);
         ConfigureDistributedLocking(context);
         ConfigureLogging(context, configuration);
@@ -58,7 +53,7 @@ public class DkwAbpMicroserviceModule : AbpModule
             {
                 builder
                     .WithOrigins(
-                        configuration["App:CorsOrigins"]!
+                        configuration[DkwAbpMicroserviceKeys.CorsOrigins]!
                             .Split(",", StringSplitOptions.RemoveEmptyEntries)
                             .Select(o => o.RemovePostFix("/"))
                             .ToArray()
@@ -72,16 +67,6 @@ public class DkwAbpMicroserviceModule : AbpModule
         });
     }
 
-    private static void ConfigureLogging(ServiceConfigurationContext context, IConfiguration configuration)
-    {
-        context.Services.ConfigureLogging(config => config.ReadFrom.Configuration(configuration));
-    }
-
-    private void ConfigureCache()
-    {
-        Configure<AbpDistributedCacheOptions>(options => options.KeyPrefix = DistributedCacheKeyPrefix);
-    }
-
     private static void ConfigureDistributedLocking(ServiceConfigurationContext context)
     {
         context.Services.AddSingleton<IDistributedLockProvider>(sp =>
@@ -89,5 +74,10 @@ public class DkwAbpMicroserviceModule : AbpModule
             var connection = sp.GetRequiredService<IConnectionMultiplexer>();
             return new RedisDistributedSynchronizationProvider(connection.GetDatabase());
         });
+    }
+
+    private static void ConfigureLogging(ServiceConfigurationContext context, IConfiguration configuration)
+    {
+        context.Services.ConfigureLogging(config => config.ReadFrom.Configuration(configuration));
     }
 }
