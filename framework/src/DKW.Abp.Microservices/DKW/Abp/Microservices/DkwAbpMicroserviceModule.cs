@@ -2,12 +2,10 @@ using DKW.Abp.Logging;
 using Medallion.Threading;
 using Medallion.Threading.Redis;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Serilog;
 using StackExchange.Redis;
+using Volo.Abp.AspNetCore.Authentication.JwtBearer;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
@@ -18,6 +16,7 @@ using Volo.Abp.Swashbuckle;
 
 namespace DKW.Abp.Microservices;
 
+[DependsOn(typeof(AbpAspNetCoreAuthenticationJwtBearerModule))]
 [DependsOn(typeof(AbpAspNetCoreMvcUiMultiTenancyModule))]
 [DependsOn(typeof(AbpAspNetCoreSerilogModule))]
 [DependsOn(typeof(AbpAutofacModule))]
@@ -40,7 +39,6 @@ public class DkwAbpMicroserviceModule : AbpModule
 
         ConfigureCors(context, configuration);
         ConfigureDistributedLocking(context);
-        ConfigureLogging(context, configuration);
 
         context.Services.AddProblemDetails();
     }
@@ -74,10 +72,5 @@ public class DkwAbpMicroserviceModule : AbpModule
             var connection = sp.GetRequiredService<IConnectionMultiplexer>();
             return new RedisDistributedSynchronizationProvider(connection.GetDatabase());
         });
-    }
-
-    private static void ConfigureLogging(ServiceConfigurationContext context, IConfiguration configuration)
-    {
-        context.Services.ConfigureLogging(config => config.ReadFrom.Configuration(configuration));
     }
 }
