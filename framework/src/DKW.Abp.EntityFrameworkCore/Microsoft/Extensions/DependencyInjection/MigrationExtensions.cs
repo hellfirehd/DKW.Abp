@@ -24,15 +24,8 @@ public static class MigrationExtensions
     {
         ArgumentNullException.ThrowIfNull(scope);
 
-        var migrationService = scope.ServiceProvider.GetRequiredService<DbContextMigrationManager>();
+        var migrationService = scope.ServiceProvider.GetRequiredService<IDbContextMigrationManager>();
 
         await migrationService.MigrateAsync(cancellationToken);
-    }
-
-    public static IServiceCollection AddDkwMigrations(this IServiceCollection services, Action<DkwDbContextMigrationOptions>? configure = null)
-    {
-        return services
-            .Configure<DkwDbContextMigrationOptions>(options => configure?.Invoke(options))
-            .AddScoped<DbContextMigrationManager>();
     }
 }
