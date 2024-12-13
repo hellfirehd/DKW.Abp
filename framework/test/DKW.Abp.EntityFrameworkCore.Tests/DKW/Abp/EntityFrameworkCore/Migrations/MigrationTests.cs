@@ -35,6 +35,5 @@ public class MigrationTests
     [DependsOn(typeof(TestAppEntityFrameworkCoreSqliteModule))]
     public class TestAppMigrationModule : AbpModule
     {
-
     }
 }
