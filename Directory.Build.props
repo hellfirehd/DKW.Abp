@@ -49,7 +49,7 @@
         </PackageReference>
         <PackageReference Include="Nerdbank.GitVersioning" Condition="!Exists('packages.config')">
             <PrivateAssets>all</PrivateAssets>
-            <Version>3.6.146</Version>
+            <Version>3.*</Version>
         </PackageReference>
     </ItemGroup>
 

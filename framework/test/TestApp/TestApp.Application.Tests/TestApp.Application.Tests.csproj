@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace>TestApp</RootNamespace>
+        <TargetFramework>net9.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\TestApp.Application\TestApp.Application.csproj" />
+        <ProjectReference Include="..\TestApp.Domain.Tests\TestApp.Domain.Tests.csproj" />
+    </ItemGroup>
+
+</Project>

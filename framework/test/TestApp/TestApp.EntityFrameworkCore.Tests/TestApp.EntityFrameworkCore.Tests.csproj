@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace>TestApp</RootNamespace>
+        <TargetFramework>net9.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="9.0.2" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\TestApp.EntityFrameworkCore\TestApp.EntityFrameworkCore.csproj" />
+        <ProjectReference Include="..\TestApp.Application.Tests\TestApp.Application.Tests.csproj" />
+    </ItemGroup>
+
+</Project>
