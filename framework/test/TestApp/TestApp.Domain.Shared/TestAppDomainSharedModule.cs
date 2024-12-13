@@ -1,6 +1,5 @@
 using TestApp.Localization;
 using Volo.Abp.AuditLogging;
-using Volo.Abp.BackgroundJobs;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.Localization;
@@ -16,7 +15,6 @@ using Volo.Abp.VirtualFileSystem;
 namespace TestApp;
 
 [DependsOn(typeof(AbpAuditLoggingDomainSharedModule))]
-[DependsOn(typeof(AbpBackgroundJobsDomainSharedModule))]
 [DependsOn(typeof(AbpFeatureManagementDomainSharedModule))]
 [DependsOn(typeof(AbpIdentityDomainSharedModule))]
 [DependsOn(typeof(AbpOpenIddictDomainSharedModule))]

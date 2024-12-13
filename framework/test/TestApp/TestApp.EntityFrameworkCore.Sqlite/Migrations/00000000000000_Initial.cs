@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -42,27 +43,6 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AbpAuditLogs", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AbpBackgroundJobs",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    JobName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
-                    JobArgs = table.Column<string>(type: "TEXT", maxLength: 1048576, nullable: false),
-                    TryCount = table.Column<short>(type: "INTEGER", nullable: false, defaultValue: (short)0),
-                    CreationTime = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    NextTryTime = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    LastTryTime = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    IsAbandoned = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: false),
-                    Priority = table.Column<byte>(type: "INTEGER", nullable: false, defaultValue: (byte)15),
-                    ExtraProperties = table.Column<string>(type: "TEXT", nullable: false),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", maxLength: 40, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AbpBackgroundJobs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -809,11 +789,6 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 columns: new[] { "TenantId", "UserId", "ExecutionTime" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AbpBackgroundJobs_IsAbandoned_NextTryTime",
-                table: "AbpBackgroundJobs",
-                columns: new[] { "IsAbandoned", "NextTryTime" });
-
-            migrationBuilder.CreateIndex(
                 name: "IX_AbpEntityChanges_AuditLogId",
                 table: "AbpEntityChanges",
                 column: "AuditLogId");
@@ -1038,9 +1013,6 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
         {
             migrationBuilder.DropTable(
                 name: "AbpAuditLogActions");
-
-            migrationBuilder.DropTable(
-                name: "AbpBackgroundJobs");
 
             migrationBuilder.DropTable(
                 name: "AbpClaimTypes");

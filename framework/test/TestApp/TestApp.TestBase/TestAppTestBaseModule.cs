@@ -2,7 +2,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp;
 using Volo.Abp.Authorization;
 using Volo.Abp.Autofac;
-using Volo.Abp.BackgroundJobs;
 using Volo.Abp.Data;
 using Volo.Abp.Modularity;
 using Volo.Abp.Threading;
@@ -12,16 +11,10 @@ namespace TestApp;
 [DependsOn(typeof(AbpAutofacModule))]
 [DependsOn(typeof(AbpTestBaseModule))]
 [DependsOn(typeof(AbpAuthorizationModule))]
-[DependsOn(typeof(AbpBackgroundJobsAbstractionsModule))]
 public class TestAppTestBaseModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        Configure<AbpBackgroundJobOptions>(options =>
-        {
-            options.IsJobExecutionEnabled = false;
-        });
-
         context.Services.AddAlwaysAllowAuthorization();
     }
 
