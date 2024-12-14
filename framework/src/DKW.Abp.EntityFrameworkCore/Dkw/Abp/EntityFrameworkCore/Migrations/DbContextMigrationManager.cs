@@ -34,7 +34,15 @@ public class DbContextMigrationManager(
             {
                 var migrator = (IDbContextMigrator)scope.ServiceProvider.GetRequiredService(migratorType);
 
-                await migrator.MigrateAsync(cancellationToken);
+                try
+                {
+                    await migrator.MigrateAsync(cancellationToken);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogException(ex);
+                    throw;
+                }
             }
         }
     }
