@@ -1,73 +1,52 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.Data;
-using Volo.Abp.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.FeatureManagement.EntityFrameworkCore;
-using Volo.Abp.Identity;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.Identity.EntityFrameworkCore;
-using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
-using Volo.Abp.TenantManagement;
-using Volo.Abp.TenantManagement.EntityFrameworkCore;
 
 namespace TestApp.EntityFrameworkCore;
 
-[ReplaceDbContext(typeof(IIdentityDbContext))]
-[ReplaceDbContext(typeof(ITenantManagementDbContext))]
 [ConnectionStringName("Default")]
-public class TestAppDbContext :
-    AbpDbContext<TestAppDbContext>,
-    IIdentityDbContext,
-    ITenantManagementDbContext
+public class TestAppDbContext(DbContextOptions<TestAppDbContext> options) : AbpDbContext<TestAppDbContext>(options)
 {
-    /* Add DbSet properties for your Aggregate Roots / Entities here. */
+    public DbSet<Person> People { get; set; }
+    public DbSet<PersonView> PersonView { get; set; }
 
-    #region Entities from the modules
-
-    /* Notice: We only implemented IIdentityDbContext and ITenantManagementDbContext
-     * and replaced them for this DbContext. This allows you to perform JOIN
-     * queries for the entities of these modules over the repositories easily. You
-     * typically don't need that for other modules. But, if you need, you can
-     * implement the DbContext interface of the needed module and use ReplaceDbContext
-     * attribute just like IIdentityDbContext and ITenantManagementDbContext.
-     *
-     * More info: Replacing a DbContext of a module ensures that the related module
-     * uses this DbContext on runtime. Otherwise, it will use its own DbContext class.
-     */
-
-    //Identity
-    public DbSet<IdentityUser> Users { get; set; }
-    public DbSet<IdentityRole> Roles { get; set; }
-    public DbSet<IdentityClaimType> ClaimTypes { get; set; }
-    public DbSet<OrganizationUnit> OrganizationUnits { get; set; }
-    public DbSet<IdentitySecurityLog> SecurityLogs { get; set; }
-    public DbSet<IdentityLinkUser> LinkUsers { get; set; }
-    public DbSet<IdentityUserDelegation> UserDelegations { get; set; }
-    public DbSet<IdentitySession> Sessions { get; set; }
-    // Tenant Management
-    public DbSet<Tenant> Tenants { get; set; }
-    public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
-
-    #endregion
-
-    public TestAppDbContext(DbContextOptions<TestAppDbContext> options)
-        : base(options)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
 
-    }
+        //modelBuilder.ConfigureAuditLogging();
+        //modelBuilder.ConfigureFeatureManagement();
+        modelBuilder.ConfigureIdentity();
+        //modelBuilder.ConfigureOpenIddict();
+        modelBuilder.ConfigurePermissionManagement();
+        modelBuilder.ConfigureSettingManagement();
+        //modelBuilder.ConfigureTenantManagement();
 
-    protected override void OnModelCreating(ModelBuilder builder)
-    {
-        base.OnModelCreating(builder);
+        modelBuilder.Entity<Phone>(b =>
+        {
+            b.HasKey(p => new { p.PersonId, p.Number });
+        });
 
-        builder.ConfigureAuditLogging();
-        builder.ConfigureFeatureManagement();
-        builder.ConfigureIdentity();
-        builder.ConfigureOpenIddict();
-        builder.ConfigurePermissionManagement();
-        builder.ConfigureSettingManagement();
-        builder.ConfigureTenantManagement();
+        modelBuilder.Entity<Person>(b =>
+        {
+            b.Property(x => x.LastActiveTime).ValueGeneratedOnAddOrUpdate().HasDefaultValue(DateTime.Now);
+            b.Property(x => x.HasDefaultValue).HasDefaultValue(DateTime.Now);
+            b.Property(x => x.TenantId).HasColumnName("Tenant_Id");
+            b.Property(x => x.IsDeleted).HasColumnName("Is_Deleted");
+        });
+
+        modelBuilder.Entity<PersonView>(p =>
+        {
+            p.HasNoKey();
+            p.ToView("View_PersonView");
+
+            p.ApplyObjectExtensionMappings();
+        });
+
+        modelBuilder.TryConfigureObjectExtensions<TestAppDbContext>();
     }
 }

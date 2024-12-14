@@ -12,8 +12,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\TestApp.EntityFrameworkCore\TestApp.EntityFrameworkCore.csproj" />
         <ProjectReference Include="..\TestApp.Application.Tests\TestApp.Application.Tests.csproj" />
+        <ProjectReference Include="..\TestApp.EntityFrameworkCore.Sqlite\TestApp.EntityFrameworkCore.Sqlite.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="EntityFrameworkCore\Samples\" />
     </ItemGroup>
 
 </Project>

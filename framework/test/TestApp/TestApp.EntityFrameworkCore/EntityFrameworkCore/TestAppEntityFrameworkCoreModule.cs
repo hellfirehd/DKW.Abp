@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -33,6 +34,12 @@ public class TestAppEntityFrameworkCoreModule : AbpModule
         context.Services.AddAbpDbContext<TestAppDbContext>(options =>
         {
             options.AddDefaultRepositories(includeAllEntities: true);
+
+            options.Entity<Person>(opt =>
+            {
+                opt.DefaultWithDetailsFunc = q => q.Include(p => p.Phones);
+            });
+
         });
 
         Configure<AbpUnitOfWorkDefaultOptions>(options =>

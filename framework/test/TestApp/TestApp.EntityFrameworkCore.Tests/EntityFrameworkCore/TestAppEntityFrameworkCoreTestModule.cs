@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
+using TestApp.EntityFrameworkCore.Sqlite;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Sqlite;
@@ -15,8 +16,7 @@ using Volo.Abp.Uow;
 namespace TestApp.EntityFrameworkCore;
 
 [DependsOn(typeof(TestAppApplicationTestModule))]
-[DependsOn(typeof(TestAppEntityFrameworkCoreModule))]
-[DependsOn(typeof(AbpEntityFrameworkCoreSqliteModule))]
+[DependsOn(typeof(TestAppEntityFrameworkCoreSqliteModule))]
 public class TestAppEntityFrameworkCoreTestModule : AbpModule
 {
     private SqliteConnection? _sqliteConnection;
@@ -61,13 +61,13 @@ public class TestAppEntityFrameworkCoreTestModule : AbpModule
         _sqliteConnection?.Dispose();
     }
 
-    private static SqliteConnection CreateDatabaseAndGetConnection()
+    protected virtual SqliteConnection CreateDatabaseAndGetConnection()
     {
         var connection = new AbpUnitTestSqliteConnection("Data Source=:memory:");
         connection.Open();
 
         var options = new DbContextOptionsBuilder<TestAppDbContext>()
-            .UseSqlite(connection)
+            .UseSqlite(connection, sql => sql.MigrationsAssembly(typeof(TestAppEntityFrameworkCoreSqliteModule).Assembly))
             .Options;
 
         using (var context = new TestAppDbContext(options))
