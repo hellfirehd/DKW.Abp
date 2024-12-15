@@ -16,7 +16,7 @@ jobs:
       BUILD_CONFIG: 'Release'
       SOLUTION: 'DKW.Abp.sln'
 
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
 
     steps:
 
