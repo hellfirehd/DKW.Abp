@@ -16,12 +16,9 @@ jobs:
       BUILD_CONFIG: 'Release'
       SOLUTION: 'DKW.Abp.sln'
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
-
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v2
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
