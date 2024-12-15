@@ -1,4 +1,4 @@
-﻿using DKW.Abp.Microservices;
+using DKW.Abp.Microservices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;

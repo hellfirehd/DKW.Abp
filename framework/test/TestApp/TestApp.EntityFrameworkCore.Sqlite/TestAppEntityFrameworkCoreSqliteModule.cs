@@ -1,4 +1,4 @@
-﻿using DKW.Abp.EntityFrameworkCore;
+using DKW.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Sqlite;
 using Volo.Abp.Modularity;
