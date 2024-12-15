@@ -1,5 +1,5 @@
+﻿using DKW.Abp.Logging;
 using Serilog;
-using Serilog.Events;
 
 namespace TestApp;
 
@@ -8,28 +8,17 @@ public class Program
     public async static Task<int> Main(string[] args)
     {
         Log.Logger = new LoggerConfiguration()
-#if DEBUG
-            .MinimumLevel.Debug()
-#else
-            .MinimumLevel.Information()
-#endif
-            .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-            .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
-            .Enrich.FromLogContext()
-            .WriteTo.Async(c => c.Console())
-            .CreateLogger();
+           .WriteTo.Async(c => c.Console(outputTemplate: LoggingTemplates.BootstrapTemplate))
+           .CreateBootstrapLogger();
 
         try
         {
-            Log.Information("Starting TestApp.HttpApi.Host.");
-
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Host.AddAppSettingsSecretsJson()
-                .UseAutofac()
-                .UseSerilog();
+                .UseAutofac();
 
-            await builder.AddApplicationAsync<TestAppHttpApiHostModule>();
+            var abp = await builder.AddApplicationAsync<TestAppHttpApiHostModule>();
 
             var app = builder.Build();
 

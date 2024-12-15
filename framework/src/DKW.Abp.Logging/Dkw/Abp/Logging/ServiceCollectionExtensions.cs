@@ -1,29 +1,45 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
+using Serilog.Sinks.SystemConsole.Themes;
 using System.Reflection;
 
 namespace DKW.Abp.Logging;
 
 public static class ServiceCollectionExtensions
 {
-    public static LoggerConfiguration BuildDefaultLoggerConfiguration(this IServiceCollection services, LogEventLevel logEventLevel = LogEventLevel.Information)
+    public static IServiceCollection AddDefaultLogger(this IServiceCollection services, Action<LoggerConfiguration>? configure = null)
     {
-        var configuration = services.GetConfiguration();
+        var lls = new LoggingLevelSwitch();
+        services.AddSingleton(lls);
 
-        var loggingLevelSwitch = new LoggingLevelSwitch(logEventLevel);
-        services.AddSingleton(loggingLevelSwitch);
+        services.AddSerilog((provider, configuration) =>
+        {
+            configuration
+                .ReadFrom.Configuration(provider.GetRequiredService<IConfiguration>())
+                .ReadFrom.Services(provider)
+                .MinimumLevel.ControlledBy(lls)
+                .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
+                .Enrich.WithProperty(EnricherPropertyNames.Group, GetApplicationGroup())
+                .Enrich.WithProperty(EnricherPropertyNames.Application, services.GetApplicationName())
+                .Enrich.WithProperty(EnricherPropertyNames.InstanceId, services.GetApplicationInstanceId())
+                .Enrich.WithMachineName()
+                .Enrich.WithEnvironmentName()
+                .Enrich.FromLogContext()
+                .WriteTo.Async(c => c.Console(outputTemplate: LoggingTemplates.ConsoleTemplate, theme: AnsiConsoleTheme.Code));
 
-        return new LoggerConfiguration()
-            .ReadFrom.Configuration(configuration)
-            .MinimumLevel.ControlledBy(loggingLevelSwitch)
-            .Enrich.FromLogContext()
-            .Enrich.WithProperty(EnricherPropertyNames.Group, GetApplicationGroup())
-            .Enrich.WithProperty(EnricherPropertyNames.Application, services.GetApplicationName())
-            .Enrich.WithProperty(EnricherPropertyNames.InstanceId, services.GetApplicationInstanceId())
-            .Enrich.WithMachineName()
-            .Enrich.WithEnvironmentName();
+            configure?.Invoke(configuration);
+        });
+
+        Log.Information("Starting {ApplicationName} InstanceId: {InstanceId}",
+            services.GetApplicationName(),
+            services.GetApplicationInstanceId());
+        Log.Debug("Debug Logging is Enabled");
+        Log.Verbose("Verbose Logging is Enabled");
+
+        return services;
     }
 
     private static String? GetApplicationGroup()

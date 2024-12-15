@@ -1,4 +1,3 @@
-using DKW.Abp.Logging;
 using Medallion.Threading;
 using Medallion.Threading.Redis;
 using Microsoft.AspNetCore.Cors;
@@ -23,7 +22,6 @@ namespace DKW.Abp.Microservices;
 [DependsOn(typeof(AbpCachingStackExchangeRedisModule))]
 [DependsOn(typeof(AbpDistributedLockingModule))]
 [DependsOn(typeof(AbpSwashbuckleModule))]
-[DependsOn(typeof(DkwAbpLoggingModule))]
 public class DkwAbpMicroserviceModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
@@ -69,7 +67,8 @@ public class DkwAbpMicroserviceModule : AbpModule
     {
         context.Services.AddSingleton<IDistributedLockProvider>(sp =>
         {
-            var connection = sp.GetRequiredService<IConnectionMultiplexer>();
+            var connection = sp.GetService<IConnectionMultiplexer>()
+                ?? ConnectionMultiplexer.Connect(context.Services.GetConfiguration()[DkwAbpMicroserviceKeys.RedisConfiguration]!);
             return new RedisDistributedSynchronizationProvider(connection.GetDatabase());
         });
     }
