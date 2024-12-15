@@ -1,4 +1,3 @@
-﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -11,6 +10,9 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            // Disable foreign key constraints temporarily
+            migrationBuilder.Sql("PRAGMA foreign_keys = OFF;", suppressTransaction: true);
+
             migrationBuilder.AlterColumn<DateTime>(
                 name: "LastActiveTime",
                 table: "People",
@@ -77,6 +79,9 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 table: "AbpSettings",
                 columns: new[] { "Name", "ProviderName", "ProviderKey" },
                 unique: true);
+
+            // Re-enable foreign key constraints
+            migrationBuilder.Sql("PRAGMA foreign_keys = ON;", suppressTransaction: true);
         }
 
         /// <inheritdoc />

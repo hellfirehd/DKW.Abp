@@ -16,25 +16,26 @@ jobs:
       BUILD_CONFIG: 'Release'
       SOLUTION: 'DKW.Abp.sln'
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4.2.2
-      with: 
-        fetch-depth: 0
-
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v2.0.0
-
-    - name: Restore dependencies
-      run: nuget restore $SOLUTION
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 9.x
+  
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v2.0.0
+        
+    - name: Checkout
+      uses: actions/checkout@v4.2.2
+      with: 
+        fetch-depth: 0
 
+    - name: Restore dependencies
+      run: nuget restore $SOLUTION
+  
     - name: Build
       run: dotnet build $SOLUTION --configuration $BUILD_CONFIG --no-restore
 

@@ -15,17 +15,14 @@ namespace DKW.Abp.Logging;
 [DependsOn(typeof(AbpAutofacWebAssemblyModule))]
 public class DkwAbpLoggingWebAssemblyModule : AbpModule
 {
-    private LoggerConfiguration loggerConfiguration = new();
-
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         context.Services.TryAddObjectAccessor<NavigationManager>();
-        loggerConfiguration = context.Services.BuildDefaultLoggerConfiguration();
     }
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
     {
-        Log.Logger = loggerConfiguration
+        Log.Logger = new LoggerConfiguration()
             .Enrich.WithCurrentLocation(context.ServiceProvider.GetRequiredService<IObjectAccessor<NavigationManager>>())
             .WriteTo.BrowserConsole(
                 restrictedToMinimumLevel: LogEventLevel.Information,

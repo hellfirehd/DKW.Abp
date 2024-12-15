@@ -1,4 +1,4 @@
-﻿using DKW.Abp.EntityFrameworkCore;
+using DKW.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Sqlite;
 using Volo.Abp.Modularity;
@@ -14,7 +14,10 @@ public class TestAppEntityFrameworkCoreSqliteModule : AbpModule
     {
         Configure<AbpDbContextOptions>(options =>
         {
-            options.UseSqlite(sql => sql.MigrationsAssembly(GetType().Assembly.GetName().Name));
+            options.UseSqlite(sql =>
+            {
+                sql.MigrationsAssembly(GetType().Assembly.GetName().Name);
+            });
         });
     }
 }

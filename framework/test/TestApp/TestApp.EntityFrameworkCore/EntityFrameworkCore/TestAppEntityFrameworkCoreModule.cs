@@ -34,12 +34,10 @@ public class TestAppEntityFrameworkCoreModule : AbpModule
         context.Services.AddAbpDbContext<TestAppDbContext>(options =>
         {
             options.AddDefaultRepositories(includeAllEntities: true);
-
             options.Entity<Person>(opt =>
             {
                 opt.DefaultWithDetailsFunc = q => q.Include(p => p.Phones);
             });
-
         });
 
         Configure<AbpUnitOfWorkDefaultOptions>(options =>
