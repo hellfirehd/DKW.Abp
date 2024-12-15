@@ -1,8 +1,9 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using DKW.Abp.Microservices;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Shouldly;
 using TestApp.EntityFrameworkCore.Sqlite;
 using Volo.Abp;
@@ -25,27 +26,27 @@ public class Migration_and_Seeding_test
     [Fact]
     public async Task Should_Apply_Migrations_and_Seed()
     {
-        using (var application = await AbpApplicationFactory.CreateAsync<MigrationsTestModule>(options =>
+        var builder = WebApplication.CreateBuilder([]);
+
+        builder.Host.UseAutofac();
+
+        var abp = await builder.AddApplicationAsync<MigrationsTestModule>();
+
+        await using (var app = builder.Build())
         {
-            options.UseAutofac();
-        }))
-        {
-            await application.InitializeAsync();
+            await app.InitializeApplicationAsync();
 
-            await application.ServiceProvider.MigrateAsync();
+            await app.MigrateAsync();
+            await app.SeedAsync();
 
-            await application.ServiceProvider.SeedAsync();
-
-            var dbContext = application.ServiceProvider.GetRequiredService<TestAppDbContext>();
-
+            var dbContext = app.Services.GetRequiredService<TestAppDbContext>();
             dbContext.People.Count().ShouldBe(1);
-
-            await application.ShutdownAsync();
         }
     }
 
-    [DependsOn(typeof(TestAppApplicationTestModule))]
-    [DependsOn(typeof(TestAppEntityFrameworkCoreSqliteModule))]
+    [DependsOn(typeof(TestAppApplicationModule))] // This references TestAppDomainModule which contains the PersonContributor.
+    [DependsOn(typeof(TestAppEntityFrameworkCoreSqliteModule))] // This contains the migrations.
+    [DependsOn(typeof(DkwAbpMicroserviceModule))] // This references things that ABP needs to run.
     public class MigrationsTestModule : AbpModule
     {
         private SqliteConnection? _sqliteConnection;
@@ -54,18 +55,16 @@ public class Migration_and_Seeding_test
         {
             context.Services.AddAlwaysDisableUnitOfWorkTransaction();
 
-            ConfigureInMemorySqlite(context.Services);
-        }
+            _sqliteConnection = GetOpenConnection();
 
-        private void ConfigureInMemorySqlite(IServiceCollection services)
-        {
-            _sqliteConnection = CreateDatabaseAndGetConnection();
-
-            services.Configure<AbpDbContextOptions>(options =>
+            context.Services.Configure<AbpDbContextOptions>(options =>
             {
                 options.Configure(context =>
                 {
-                    context.DbContextOptions.UseSqlite(_sqliteConnection);
+                    context.DbContextOptions.UseSqlite(_sqliteConnection, conf =>
+                    {
+                        conf.MigrationsAssembly(typeof(TestAppEntityFrameworkCoreSqliteModule).Assembly.GetName().Name);
+                    });
                 });
             });
         }
@@ -75,21 +74,10 @@ public class Migration_and_Seeding_test
             _sqliteConnection?.Dispose();
         }
 
-        protected virtual SqliteConnection CreateDatabaseAndGetConnection()
+        private static SqliteConnection GetOpenConnection()
         {
-            //var connection = new AbpUnitTestSqliteConnection("Data Source=:memory:");
-            var connection = new AbpUnitTestSqliteConnection($"Data Source=E:\\Test-{Guid.Empty:N}.db");
+            var connection = new AbpUnitTestSqliteConnection("Data Source=:memory:");
             connection.Open();
-
-            var options = new DbContextOptionsBuilder<TestAppDbContext>()
-                .UseSqlite(connection, sql => sql.MigrationsAssembly(typeof(TestAppEntityFrameworkCoreSqliteModule).Assembly))
-                .Options;
-
-            using (var context = new TestAppDbContext(options))
-            {
-                context.GetService<IRelationalDatabaseCreator>().Create();
-            }
-
             return connection;
         }
     }

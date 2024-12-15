@@ -1,4 +1,4 @@
-﻿using Serilog;
+using Serilog;
 using Serilog.Events;
 
 namespace TestApp;
@@ -34,6 +34,9 @@ public class Program
             var app = builder.Build();
 
             await app.InitializeApplicationAsync();
+
+            await app.MigrateAsync();
+            await app.SeedAsync();
 
             await app.RunAsync();
 

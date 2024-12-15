@@ -14,7 +14,10 @@ public class TestAppEntityFrameworkCoreSqliteModule : AbpModule
     {
         Configure<AbpDbContextOptions>(options =>
         {
-            options.UseSqlite(sql => sql.MigrationsAssembly(GetType().Assembly.GetName().Name));
+            options.UseSqlite(sql =>
+            {
+                sql.MigrationsAssembly(GetType().Assembly.GetName().Name);
+            });
         });
     }
 }
