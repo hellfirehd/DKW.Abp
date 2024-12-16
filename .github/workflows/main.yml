@@ -12,10 +12,6 @@ on:
 jobs:
   build:
 
-    env:
-      BUILD_CONFIG: 'Release'
-      SOLUTION: 'DKW.Abp.sln'
-
     runs-on: self-hosted
 
     steps:
@@ -34,13 +30,13 @@ jobs:
         fetch-depth: 0
 
     - name: Restore dependencies
-      run: nuget restore ${{SOLUTION}}
+      run: nuget restore
   
     - name: Build
-      run: dotnet build ${{SOLUTION}} --configuration ${{BUILD_CONFIG}} --no-restore
+      run: dotnet build --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test --configuration ${{BUILD_CONFIG}} --no-restore --no-build --verbosity normal
+      run: dotnet test --configuration Release --no-restore --no-build --verbosity normal
 
     - name: Publish
       if: startsWith(github.ref, 'refs/heads/main')
