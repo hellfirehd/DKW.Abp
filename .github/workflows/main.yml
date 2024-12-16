@@ -34,13 +34,13 @@ jobs:
         fetch-depth: 0
 
     - name: Restore dependencies
-      run: nuget restore $SOLUTION
+      run: nuget restore ${{SOLUTION}}
   
     - name: Build
-      run: dotnet build $SOLUTION --configuration $BUILD_CONFIG --no-restore
+      run: dotnet build ${{SOLUTION}} --configuration ${{BUILD_CONFIG}} --no-restore
 
     - name: Test
-      run: dotnet test --configuration $BUILD_CONFIG --no-restore --no-build --verbosity normal
+      run: dotnet test --configuration ${{BUILD_CONFIG}} --no-restore --no-build --verbosity normal
 
     - name: Publish
       if: startsWith(github.ref, 'refs/heads/main')
