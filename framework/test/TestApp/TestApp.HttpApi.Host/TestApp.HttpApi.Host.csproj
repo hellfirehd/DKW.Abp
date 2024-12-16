@@ -8,10 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\..\..\src\DKW.Abp.Logging\DKW.Abp.Logging.csproj" />
         <ProjectReference Include="..\..\..\src\DKW.Abp.Microservices\DKW.Abp.Microservice.csproj" />
         <ProjectReference Include="..\TestApp.Application\TestApp.Application.csproj" />

@@ -1,5 +1,4 @@
-using DKW.Abp.EntityFrameworkCore.Migrations;
-using Microsoft.Extensions.DependencyInjection;
+using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.PostgreSql;
 using Volo.Abp.Modularity;
 
@@ -11,10 +10,9 @@ public class DkwAbpOpenIdEntityFrameworkCorePostgreSqlModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        context.Services.Configure<DkwDbContextMigrationOptions>(options =>
+        Configure<AbpDbContextOptions>(options =>
         {
-            // This looks like fun!
-            options.Migrators.Add<OpenIddictMigrationDbContextMigrator>();
+            options.UseNpgsql(options => options.MigrationsAssembly(GetType().Assembly.GetName().Name));
         });
     }
 }

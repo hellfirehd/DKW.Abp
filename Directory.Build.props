@@ -24,6 +24,9 @@
         
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/hellfirehd/DKW.Abp</RepositoryUrl>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
     </PropertyGroup>
 

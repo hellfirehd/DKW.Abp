@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.Modularity;
@@ -14,7 +13,6 @@ using Volo.Abp.Uow;
 namespace TestApp.EntityFrameworkCore;
 
 [DependsOn(typeof(AbpAuditLoggingEntityFrameworkCoreModule))]
-[DependsOn(typeof(AbpEntityFrameworkCoreModule))]
 [DependsOn(typeof(AbpFeatureManagementEntityFrameworkCoreModule))]
 [DependsOn(typeof(AbpIdentityEntityFrameworkCoreModule))]
 [DependsOn(typeof(AbpOpenIddictEntityFrameworkCoreModule))]

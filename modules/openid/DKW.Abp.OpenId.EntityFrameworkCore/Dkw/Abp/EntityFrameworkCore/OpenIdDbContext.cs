@@ -8,9 +8,9 @@ using Volo.Abp.OpenIddict.EntityFrameworkCore;
 namespace DKW.Abp.EntityFrameworkCore;
 
 [IgnoreMultiTenancy]
-[ConnectionStringName("Default")]
-public class OpenIddictMigrationDbContext(DbContextOptions<OpenIddictMigrationDbContext> options)
-    : AbpDbContext<OpenIddictMigrationDbContext>(options)
+[ConnectionStringName(DbConsts.ConnectionStringName)]
+public class OpenIdDbContext(DbContextOptions<OpenIdDbContext> options)
+    : AbpDbContext<OpenIdDbContext>(options)
 {
     protected override void OnModelCreating(ModelBuilder builder)
     {

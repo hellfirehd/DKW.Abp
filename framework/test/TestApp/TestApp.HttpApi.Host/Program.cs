@@ -31,19 +31,14 @@ public class Program
 
             return 0;
         }
-        catch (Exception ex)
+        catch (Exception ex) when (ex is not HostAbortedException)
         {
-            if (ex is HostAbortedException)
-            {
-                throw;
-            }
-
             Log.Fatal(ex, "Host terminated unexpectedly!");
             return 1;
         }
         finally
         {
-            Log.CloseAndFlush();
+            await Log.CloseAndFlushAsync();
         }
     }
 }
