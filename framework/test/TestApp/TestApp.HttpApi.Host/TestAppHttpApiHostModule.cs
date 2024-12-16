@@ -1,6 +1,7 @@
 
 using DKW.Abp.Logging;
 using DKW.Abp.Microservices;
+using Microsoft.IdentityModel.Logging;
 using TestApp.EntityFrameworkCore.Sqlite;
 using TestApp.MultiTenancy;
 using Volo.Abp;
@@ -10,19 +11,16 @@ using Volo.Abp.VirtualFileSystem;
 
 namespace TestApp;
 
+[DependsOn(typeof(DkwAbpLoggingModule))]
+[DependsOn(typeof(DkwAbpMicroserviceModule))]
 [DependsOn(typeof(TestAppApplicationModule))]
 [DependsOn(typeof(TestAppEntityFrameworkCoreSqliteModule))]
 [DependsOn(typeof(TestAppHttpApiModule))]
-[DependsOn(typeof(DkwAbpLoggingModule))]
-[DependsOn(typeof(DkwAbpMicroserviceModule))]
 public class TestAppHttpApiHostModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         context.Services.AddDefaultLogger();
-        // This is because we are defaulting to Sqlite which does not support transactions.
-        //context.Services.AddAlwaysDisableUnitOfWorkTransaction();
-
         context.ConfigureMicroservice("TestApp");
 
         ConfigureConventionalControllers();
@@ -68,10 +66,10 @@ public class TestAppHttpApiHostModule : AbpModule
 
         if (env.IsDevelopment())
         {
+            IdentityModelEventSource.ShowPII = true;
             app.UseDeveloperExceptionPage();
         }
 
-        app.UseAbpRequestLocalization();
         app.UseCorrelationId();
         app.MapAbpStaticAssets();
         app.UseRouting();
@@ -83,6 +81,7 @@ public class TestAppHttpApiHostModule : AbpModule
             app.UseMultiTenancy();
         }
 
+        app.UseAbpRequestLocalization();
         app.UseUnitOfWork();
         app.UseDynamicClaims();
         app.UseAuthorization();

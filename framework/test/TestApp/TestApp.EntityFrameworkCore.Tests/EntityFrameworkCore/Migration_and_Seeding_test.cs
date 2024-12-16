@@ -49,6 +49,7 @@ public class Migration_and_Seeding_test
     [DependsOn(typeof(DkwAbpMicroserviceModule))] // This references things that ABP needs to run.
     public class MigrationsTestModule : AbpModule
     {
+        // Holds the connection open for the duration of the test
         private SqliteConnection? _sqliteConnection;
 
         public override void ConfigureServices(ServiceConfigurationContext context)
@@ -76,7 +77,7 @@ public class Migration_and_Seeding_test
 
         private static SqliteConnection GetOpenConnection()
         {
-            var connection = new AbpUnitTestSqliteConnection("Data Source=:memory:");
+            var connection = new AbpUnitTestSqliteConnection("Data Source=file::memory:?cache=shared");
             connection.Open();
             return connection;
         }

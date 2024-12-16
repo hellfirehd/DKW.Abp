@@ -19,6 +19,7 @@ namespace TestApp.EntityFrameworkCore;
 [DependsOn(typeof(TestAppEntityFrameworkCoreSqliteModule))]
 public class TestAppEntityFrameworkCoreTestModule : AbpModule
 {
+    // Holds the connection open for the duration of the test
     private SqliteConnection? _sqliteConnection;
 
     public override void ConfigureServices(ServiceConfigurationContext context)

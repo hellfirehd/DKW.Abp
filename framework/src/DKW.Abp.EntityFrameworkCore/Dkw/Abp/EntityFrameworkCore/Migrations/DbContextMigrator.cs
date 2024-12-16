@@ -1,57 +1,103 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
+using Volo.Abp;
 using Volo.Abp.DependencyInjection;
+using Volo.Abp.DistributedLocking;
+using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.MultiTenancy;
+using Volo.Abp.Uow;
 
 namespace DKW.Abp.EntityFrameworkCore.Migrations;
 
-public class DbContextMigrator<TDbContext>(IServiceProvider serviceProvider)
-    : DbContextMigratorBase, IDbContextMigrator, ITransientDependency
-    where TDbContext : DbContext
+public class DbContextMigrator<TDbContext>(
+    String databaseName,
+    ICurrentTenant currentTenant,
+    IAbpDistributedLock distributedLock,
+    ILogger<DbContextMigrator<TDbContext>> logger,
+    ITenantStore tenantStore,
+    IUnitOfWorkManager unitOfWorkManager
+    ) : IDbContextMigrator, ITransientDependency
+    where TDbContext : DbContext, IEfCoreDbContext
 {
-    private ILogger? _logger;
-    protected IServiceProvider ServiceProvider { get; } = serviceProvider;
+    protected string DatabaseName { get; } = databaseName ?? throw new ArgumentNullException(nameof(databaseName));
+    protected ICurrentTenant CurrentTenant { get; } = currentTenant ?? throw new ArgumentNullException(nameof(currentTenant));
+    protected IAbpDistributedLock DistributedLock { get; } = distributedLock ?? throw new ArgumentNullException(nameof(distributedLock));
+    protected TimeSpan DistributedLockAcquireTimeout { get; set; } = TimeSpan.FromMinutes(15);
+    protected ILogger<DbContextMigrator<TDbContext>> Logger { get; } = logger ?? throw new ArgumentNullException(nameof(logger));
+    protected ITenantStore TenantStore { get; } = tenantStore ?? throw new ArgumentNullException(nameof(tenantStore));
+    protected IUnitOfWorkManager UnitOfWorkManager { get; } = unitOfWorkManager ?? throw new ArgumentNullException(nameof(unitOfWorkManager));
 
-    protected override ILogger Logger => _logger
-        ??= ServiceProvider.GetService<ILoggerFactory>()?.CreateLogger<TDbContext>()
-        ?? new NullLogger<TDbContext>();
+    public virtual Task MigrateAsync(CancellationToken cancellationToken = default)
+        => MigrateDatabaseSchemaAsync(null, cancellationToken);
 
-    public async Task MigrateAsync(CancellationToken cancellationToken = default)
+    /// <summary>
+    /// Apply pending EF Core schema migrations to the database.
+    /// Returns true if any migration has applied.
+    /// </summary>
+    protected virtual async Task<bool> MigrateDatabaseSchemaAsync(Guid? tenantId, CancellationToken cancellationToken = default)
     {
-        await TryAsync(ApplyMigrations, cancellationToken: cancellationToken);
+        var result = false;
+
+        using (CurrentTenant.Change(tenantId))
+        {
+            using (var uow = UnitOfWorkManager.Begin(requiresNew: true, isTransactional: false))
+            {
+
+                if (tenantId == null)
+                {
+                    //Migrating the host database
+                    Logger.LogInformation("Migrating database of host. Database Name: {DatabaseName}", DatabaseName);
+                    result = await MigrateDatabaseSchemaWithDbContextAsync(uow, cancellationToken);
+                }
+                else
+                {
+                    var tenantConfiguration = await TenantStore.FindAsync(tenantId.Value);
+                    if (!tenantConfiguration!.ConnectionStrings!.Default.IsNullOrWhiteSpace() ||
+                        !tenantConfiguration.ConnectionStrings.GetOrDefault(DatabaseName).IsNullOrWhiteSpace())
+                    {
+                        //Migrating the tenant database (only if tenant has a separate database)
+                        Logger.LogInformation("Migrating separate database of tenant. Database Name: {DatabaseName}, TenantId: {tenantId}",
+                            DatabaseName, tenantId);
+                        result = await MigrateDatabaseSchemaWithDbContextAsync(uow, cancellationToken);
+                    }
+                }
+
+                await uow.CompleteAsync(cancellationToken);
+            }
+        }
+
+        return result;
     }
 
-    protected virtual async Task ApplyMigrations(CancellationToken cancellationToken = default)
+    protected virtual async Task<Boolean> MigrateDatabaseSchemaWithDbContextAsync(IUnitOfWork uow, CancellationToken cancellationToken)
     {
-        var dbContext = ServiceProvider.GetRequiredService<TDbContext>();
-        var name = dbContext.GetType().Name;
-        var pendingMigrations = await dbContext
-            .Database
-            .GetPendingMigrationsAsync(cancellationToken: cancellationToken);
+        var dbContext = await uow.ServiceProvider
+            .GetRequiredService<IDbContextProvider<TDbContext>>()
+            .GetDbContextAsync();
 
-        if (pendingMigrations.Any())
+        await using (await WaitForDistributedLockAsync(dbContext))
         {
-            Logger.LogInformation("Migrations Found: {Count}", pendingMigrations.Count());
-
-            try
+            if ((await dbContext.Database.GetPendingMigrationsAsync(cancellationToken: cancellationToken)).Any())
             {
-                Logger.LogInformation("Applying Migrations: {DatabaseName}", name);
-
                 var strategy = dbContext.Database.CreateExecutionStrategy();
                 await strategy.ExecuteAsync(dbContext.Database.MigrateAsync, cancellationToken);
-                //await dbContext.Database.MigrateAsync(cancellationToken: cancellationToken);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogCritical(ex, "Migrating {DatabaseName} failed: {Exception} - {Message}",
-                    name, ex.GetType().Name, ex.Message);
-                throw;
+                return true;
             }
         }
-        else
-        {
-            Logger.LogInformation("No migrations to apply: {DatabaseName}", name);
-        }
+
+        return false;
+    }
+
+    protected virtual async Task<IAsyncDisposable> WaitForDistributedLockAsync(TDbContext dbContext)
+    {
+        var distributedLockHandle = await DistributedLock.TryAcquireAsync(
+            "DatabaseMigrationEventHandler_" +
+            dbContext.Database.GetConnectionString()!.ToUpperInvariant().ToMd5(),
+            DistributedLockAcquireTimeout
+        );
+
+        return distributedLockHandle
+            ?? throw new AbpException($"Distributed lock could not be acquired for database migration event handler: {DatabaseName}.");
     }
 }
