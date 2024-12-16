@@ -6,14 +6,9 @@ using Volo.Abp.Ui.Branding;
 namespace TestApp.Blazor.Client;
 
 [Dependency(ReplaceServices = true)]
-public class TestAppBrandingProvider : DefaultBrandingProvider
+public class TestAppBrandingProvider(IStringLocalizer<TestAppResource> localizer) : DefaultBrandingProvider
 {
-    private IStringLocalizer<TestAppResource> _localizer;
+    private readonly IStringLocalizer<TestAppResource> _localizer = localizer;
 
-    public TestAppBrandingProvider(IStringLocalizer<TestAppResource> localizer)
-    {
-        _localizer = localizer;
-    }
-
-    public override string AppName => _localizer["AppName"];
+    public override String AppName => _localizer["AppName"];
 }

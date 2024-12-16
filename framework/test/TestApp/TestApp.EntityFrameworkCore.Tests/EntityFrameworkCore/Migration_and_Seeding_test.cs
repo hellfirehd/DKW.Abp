@@ -75,7 +75,7 @@ public class Migration_and_Seeding_test
             _sqliteConnection?.Dispose();
         }
 
-        private static SqliteConnection GetOpenConnection()
+        private static AbpUnitTestSqliteConnection GetOpenConnection()
         {
             var connection = new AbpUnitTestSqliteConnection("Data Source=file::memory:?cache=shared");
             connection.Open();

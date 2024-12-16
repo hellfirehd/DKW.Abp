@@ -37,9 +37,9 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     TenantId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
-                    ProviderName = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false),
-                    ProviderKey = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false)
+                    Name = table.Column<String>(type: "TEXT", maxLength: 128, nullable: false),
+                    ProviderName = table.Column<String>(type: "TEXT", maxLength: 64, nullable: false),
+                    ProviderKey = table.Column<String>(type: "TEXT", maxLength: 64, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -51,9 +51,9 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
-                    DisplayName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
-                    ExtraProperties = table.Column<string>(type: "TEXT", nullable: true)
+                    Name = table.Column<String>(type: "TEXT", maxLength: 128, nullable: false),
+                    DisplayName = table.Column<String>(type: "TEXT", maxLength: 256, nullable: false),
+                    ExtraProperties = table.Column<String>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -65,15 +65,15 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    GroupName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
-                    ParentName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
-                    DisplayName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
-                    IsEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    MultiTenancySide = table.Column<byte>(type: "INTEGER", nullable: false),
-                    Providers = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
-                    StateCheckers = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    ExtraProperties = table.Column<string>(type: "TEXT", nullable: true)
+                    GroupName = table.Column<String>(type: "TEXT", maxLength: 128, nullable: false),
+                    Name = table.Column<String>(type: "TEXT", maxLength: 128, nullable: false),
+                    ParentName = table.Column<String>(type: "TEXT", maxLength: 128, nullable: true),
+                    DisplayName = table.Column<String>(type: "TEXT", maxLength: 256, nullable: false),
+                    IsEnabled = table.Column<Boolean>(type: "INTEGER", nullable: false),
+                    MultiTenancySide = table.Column<Byte>(type: "INTEGER", nullable: false),
+                    Providers = table.Column<String>(type: "TEXT", maxLength: 128, nullable: true),
+                    StateCheckers = table.Column<String>(type: "TEXT", maxLength: 256, nullable: true),
+                    ExtraProperties = table.Column<String>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

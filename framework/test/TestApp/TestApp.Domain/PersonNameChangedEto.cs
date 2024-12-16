@@ -6,7 +6,7 @@ public class PersonNameChangedEto
 
     public virtual Guid? TenantId { get; set; }
 
-    public string OldName { get; set; }
+    public String OldName { get; set; } = String.Empty;
 
-    public string NewName { get; set; }
+    public String NewName { get; set; } = String.Empty;
 }

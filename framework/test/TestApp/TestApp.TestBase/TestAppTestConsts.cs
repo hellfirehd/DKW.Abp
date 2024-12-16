@@ -2,5 +2,5 @@
 
 public static class TestAppTestConsts
 {
-    public const string CollectionDefinitionName = "TestApp collection";
+    public const String CollectionDefinitionName = "TestApp collection";
 }

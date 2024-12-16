@@ -1,8 +1,9 @@
+using DKW.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.PostgreSql;
 using Volo.Abp.Modularity;
 
-namespace DKW.Abp.EntityFrameworkCore;
+namespace DKW.Abp.OpenId.EntityFrameworkCore.PostgreSql;
 
 [DependsOn(typeof(DkwAbpOpenIdEntityFrameworkCoreModule))]
 [DependsOn(typeof(AbpEntityFrameworkCorePostgreSqlModule))]

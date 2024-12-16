@@ -5,6 +5,6 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Style", "IDE0300:Simplify collection initialization", Justification = "<augo-generated />", Scope = "NamespaceAndDescendants", Target = "~N:TestApp.EntityFrameworkCore.PostgreSql.Migrations")]
-[assembly: SuppressMessage("Performance", "CA1861:Avoid constant arrays as arguments", Justification = "<augo-generated />", Scope = "NamespaceAndDescendants", Target = "~N:TestApp.EntityFrameworkCore.PostgreSql.Migrations")]
-[assembly: SuppressMessage("Style", "IDE0049:Use framework type", Justification = "<augo-generated />", Scope = "NamespaceAndDescendants", Target = "~N:TestApp.EntityFrameworkCore.PostgreSql.Migrations")]
+[assembly: SuppressMessage("Style", "IDE0300:Simplify collection initialization", Justification = "<augo-generated />", Scope = "NamespaceAndDescendants", Target = "~N:TestApp.EntityFrameworkCore.Sqlite.Migrations")]
+[assembly: SuppressMessage("Performance", "CA1861:Avoid constant arrays as arguments", Justification = "<augo-generated />", Scope = "NamespaceAndDescendants", Target = "~N:TestApp.EntityFrameworkCore.Sqlite.Migrations")]
+[assembly: SuppressMessage("Style", "IDE0049:Use framework type", Justification = "<augo-generated />", Scope = "NamespaceAndDescendants", Target = "~N:TestApp.EntityFrameworkCore.Sqlite.Migrations")]

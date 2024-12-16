@@ -38,15 +38,15 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
-                    DisplayName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
-                    Description = table.Column<string>(type: "TEXT", maxLength: 512, nullable: true),
-                    DefaultValue = table.Column<string>(type: "TEXT", maxLength: 2048, nullable: true),
-                    IsVisibleToClients = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Providers = table.Column<string>(type: "TEXT", maxLength: 1024, nullable: true),
-                    IsInherited = table.Column<bool>(type: "INTEGER", nullable: false),
-                    IsEncrypted = table.Column<bool>(type: "INTEGER", nullable: false),
-                    ExtraProperties = table.Column<string>(type: "TEXT", nullable: true)
+                    Name = table.Column<String>(type: "TEXT", maxLength: 128, nullable: false),
+                    DisplayName = table.Column<String>(type: "TEXT", maxLength: 256, nullable: false),
+                    Description = table.Column<String>(type: "TEXT", maxLength: 512, nullable: true),
+                    DefaultValue = table.Column<String>(type: "TEXT", maxLength: 2048, nullable: true),
+                    IsVisibleToClients = table.Column<Boolean>(type: "INTEGER", nullable: false),
+                    Providers = table.Column<String>(type: "TEXT", maxLength: 1024, nullable: true),
+                    IsInherited = table.Column<Boolean>(type: "INTEGER", nullable: false),
+                    IsEncrypted = table.Column<Boolean>(type: "INTEGER", nullable: false),
+                    ExtraProperties = table.Column<String>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -58,10 +58,10 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
-                    Value = table.Column<string>(type: "TEXT", maxLength: 2048, nullable: false),
-                    ProviderName = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true),
-                    ProviderKey = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true)
+                    Name = table.Column<String>(type: "TEXT", maxLength: 128, nullable: false),
+                    Value = table.Column<String>(type: "TEXT", maxLength: 2048, nullable: false),
+                    ProviderName = table.Column<String>(type: "TEXT", maxLength: 64, nullable: true),
+                    ProviderKey = table.Column<String>(type: "TEXT", maxLength: 64, nullable: true)
                 },
                 constraints: table =>
                 {

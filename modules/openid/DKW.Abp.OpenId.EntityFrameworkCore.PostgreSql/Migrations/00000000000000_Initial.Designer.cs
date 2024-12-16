@@ -10,7 +10,7 @@ using Volo.Abp.EntityFrameworkCore;
 
 #nullable disable
 
-namespace Migrations
+namespace DKW.Abp.OpenId.EntityFrameworkCore.PostgreSql.Migrations
 {
     [DbContext(typeof(OpenIdDbContext))]
     [Migration("00000000000000_Initial")]

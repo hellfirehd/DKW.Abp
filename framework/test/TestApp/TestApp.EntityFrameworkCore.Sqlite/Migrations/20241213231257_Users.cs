@@ -36,15 +36,15 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
-                    Required = table.Column<bool>(type: "INTEGER", nullable: false),
-                    IsStatic = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Regex = table.Column<string>(type: "TEXT", maxLength: 512, nullable: true),
-                    RegexDescription = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
-                    Description = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    ValueType = table.Column<int>(type: "INTEGER", nullable: false),
-                    ExtraProperties = table.Column<string>(type: "TEXT", nullable: false),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", maxLength: 40, nullable: false)
+                    Name = table.Column<String>(type: "TEXT", maxLength: 256, nullable: false),
+                    Required = table.Column<Boolean>(type: "INTEGER", nullable: false),
+                    IsStatic = table.Column<Boolean>(type: "INTEGER", nullable: false),
+                    Regex = table.Column<String>(type: "TEXT", maxLength: 512, nullable: true),
+                    RegexDescription = table.Column<String>(type: "TEXT", maxLength: 128, nullable: true),
+                    Description = table.Column<String>(type: "TEXT", maxLength: 256, nullable: true),
+                    ValueType = table.Column<Int32>(type: "INTEGER", nullable: false),
+                    ExtraProperties = table.Column<String>(type: "TEXT", nullable: false),
+                    ConcurrencyStamp = table.Column<String>(type: "TEXT", maxLength: 40, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,16 +73,16 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     TenantId = table.Column<Guid>(type: "TEXT", nullable: true),
                     ParentId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    Code = table.Column<string>(type: "TEXT", maxLength: 95, nullable: false),
-                    DisplayName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
-                    EntityVersion = table.Column<int>(type: "INTEGER", nullable: false),
-                    ExtraProperties = table.Column<string>(type: "TEXT", nullable: false),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", maxLength: 40, nullable: false),
+                    Code = table.Column<String>(type: "TEXT", maxLength: 95, nullable: false),
+                    DisplayName = table.Column<String>(type: "TEXT", maxLength: 128, nullable: false),
+                    EntityVersion = table.Column<Int32>(type: "INTEGER", nullable: false),
+                    ExtraProperties = table.Column<String>(type: "TEXT", nullable: false),
+                    ConcurrencyStamp = table.Column<String>(type: "TEXT", maxLength: 40, nullable: false),
                     CreationTime = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatorId = table.Column<Guid>(type: "TEXT", nullable: true),
                     LastModificationTime = table.Column<DateTime>(type: "TEXT", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: false),
+                    IsDeleted = table.Column<Boolean>(type: "INTEGER", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "TEXT", nullable: true),
                     DeletionTime = table.Column<DateTime>(type: "TEXT", nullable: true)
                 },
@@ -102,14 +102,14 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     TenantId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
-                    NormalizedName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
-                    IsDefault = table.Column<bool>(type: "INTEGER", nullable: false),
-                    IsStatic = table.Column<bool>(type: "INTEGER", nullable: false),
-                    IsPublic = table.Column<bool>(type: "INTEGER", nullable: false),
-                    EntityVersion = table.Column<int>(type: "INTEGER", nullable: false),
-                    ExtraProperties = table.Column<string>(type: "TEXT", nullable: false),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", maxLength: 40, nullable: false)
+                    Name = table.Column<String>(type: "TEXT", maxLength: 256, nullable: false),
+                    NormalizedName = table.Column<String>(type: "TEXT", maxLength: 256, nullable: false),
+                    IsDefault = table.Column<Boolean>(type: "INTEGER", nullable: false),
+                    IsStatic = table.Column<Boolean>(type: "INTEGER", nullable: false),
+                    IsPublic = table.Column<Boolean>(type: "INTEGER", nullable: false),
+                    EntityVersion = table.Column<Int32>(type: "INTEGER", nullable: false),
+                    ExtraProperties = table.Column<String>(type: "TEXT", nullable: false),
+                    ConcurrencyStamp = table.Column<String>(type: "TEXT", maxLength: 40, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -122,19 +122,19 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     TenantId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    ApplicationName = table.Column<string>(type: "TEXT", maxLength: 96, nullable: true),
-                    Identity = table.Column<string>(type: "TEXT", maxLength: 96, nullable: true),
-                    Action = table.Column<string>(type: "TEXT", maxLength: 96, nullable: true),
+                    ApplicationName = table.Column<String>(type: "TEXT", maxLength: 96, nullable: true),
+                    Identity = table.Column<String>(type: "TEXT", maxLength: 96, nullable: true),
+                    Action = table.Column<String>(type: "TEXT", maxLength: 96, nullable: true),
                     UserId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    TenantName = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true),
-                    ClientId = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true),
-                    CorrelationId = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true),
-                    ClientIpAddress = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true),
-                    BrowserInfo = table.Column<string>(type: "TEXT", maxLength: 512, nullable: true),
+                    UserName = table.Column<String>(type: "TEXT", maxLength: 256, nullable: true),
+                    TenantName = table.Column<String>(type: "TEXT", maxLength: 64, nullable: true),
+                    ClientId = table.Column<String>(type: "TEXT", maxLength: 64, nullable: true),
+                    CorrelationId = table.Column<String>(type: "TEXT", maxLength: 64, nullable: true),
+                    ClientIpAddress = table.Column<String>(type: "TEXT", maxLength: 64, nullable: true),
+                    BrowserInfo = table.Column<String>(type: "TEXT", maxLength: 512, nullable: true),
                     CreationTime = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ExtraProperties = table.Column<string>(type: "TEXT", nullable: false),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", maxLength: 40, nullable: false)
+                    ExtraProperties = table.Column<String>(type: "TEXT", nullable: false),
+                    ConcurrencyStamp = table.Column<String>(type: "TEXT", maxLength: 40, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -146,16 +146,16 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    SessionId = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
-                    Device = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false),
-                    DeviceInfo = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true),
+                    SessionId = table.Column<String>(type: "TEXT", maxLength: 128, nullable: false),
+                    Device = table.Column<String>(type: "TEXT", maxLength: 64, nullable: false),
+                    DeviceInfo = table.Column<String>(type: "TEXT", maxLength: 64, nullable: true),
                     TenantId = table.Column<Guid>(type: "TEXT", nullable: true),
                     UserId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    ClientId = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true),
-                    IpAddresses = table.Column<string>(type: "TEXT", maxLength: 2048, nullable: true),
+                    ClientId = table.Column<String>(type: "TEXT", maxLength: 64, nullable: true),
+                    IpAddresses = table.Column<String>(type: "TEXT", maxLength: 2048, nullable: true),
                     SignedIn = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LastAccessed = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    ExtraProperties = table.Column<string>(type: "TEXT", nullable: true)
+                    ExtraProperties = table.Column<String>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -184,33 +184,33 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     TenantId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
-                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true),
-                    Surname = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
-                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
-                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: false),
-                    PasswordHash = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    SecurityStamp = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
-                    IsExternal = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: false),
-                    PhoneNumber = table.Column<string>(type: "TEXT", maxLength: 16, nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: false),
-                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: false),
+                    UserName = table.Column<String>(type: "TEXT", maxLength: 256, nullable: false),
+                    NormalizedUserName = table.Column<String>(type: "TEXT", maxLength: 256, nullable: false),
+                    Name = table.Column<String>(type: "TEXT", maxLength: 64, nullable: true),
+                    Surname = table.Column<String>(type: "TEXT", maxLength: 64, nullable: true),
+                    Email = table.Column<String>(type: "TEXT", maxLength: 256, nullable: false),
+                    NormalizedEmail = table.Column<String>(type: "TEXT", maxLength: 256, nullable: false),
+                    EmailConfirmed = table.Column<Boolean>(type: "INTEGER", nullable: false, defaultValue: false),
+                    PasswordHash = table.Column<String>(type: "TEXT", maxLength: 256, nullable: true),
+                    SecurityStamp = table.Column<String>(type: "TEXT", maxLength: 256, nullable: false),
+                    IsExternal = table.Column<Boolean>(type: "INTEGER", nullable: false, defaultValue: false),
+                    PhoneNumber = table.Column<String>(type: "TEXT", maxLength: 16, nullable: true),
+                    PhoneNumberConfirmed = table.Column<Boolean>(type: "INTEGER", nullable: false, defaultValue: false),
+                    IsActive = table.Column<Boolean>(type: "INTEGER", nullable: false),
+                    TwoFactorEnabled = table.Column<Boolean>(type: "INTEGER", nullable: false, defaultValue: false),
                     LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: false),
-                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false, defaultValue: 0),
-                    ShouldChangePasswordOnNextLogin = table.Column<bool>(type: "INTEGER", nullable: false),
-                    EntityVersion = table.Column<int>(type: "INTEGER", nullable: false),
+                    LockoutEnabled = table.Column<Boolean>(type: "INTEGER", nullable: false, defaultValue: false),
+                    AccessFailedCount = table.Column<Int32>(type: "INTEGER", nullable: false, defaultValue: 0),
+                    ShouldChangePasswordOnNextLogin = table.Column<Boolean>(type: "INTEGER", nullable: false),
+                    EntityVersion = table.Column<Int32>(type: "INTEGER", nullable: false),
                     LastPasswordChangeTime = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
-                    ExtraProperties = table.Column<string>(type: "TEXT", nullable: false),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", maxLength: 40, nullable: false),
+                    ExtraProperties = table.Column<String>(type: "TEXT", nullable: false),
+                    ConcurrencyStamp = table.Column<String>(type: "TEXT", maxLength: 40, nullable: false),
                     CreationTime = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatorId = table.Column<Guid>(type: "TEXT", nullable: true),
                     LastModificationTime = table.Column<DateTime>(type: "TEXT", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: false),
+                    IsDeleted = table.Column<Boolean>(type: "INTEGER", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "TEXT", nullable: true),
                     DeletionTime = table.Column<DateTime>(type: "TEXT", nullable: true)
                 },
@@ -253,8 +253,8 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     RoleId = table.Column<Guid>(type: "TEXT", nullable: false),
                     TenantId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    ClaimType = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
-                    ClaimValue = table.Column<string>(type: "TEXT", maxLength: 1024, nullable: true)
+                    ClaimType = table.Column<String>(type: "TEXT", maxLength: 256, nullable: false),
+                    ClaimValue = table.Column<String>(type: "TEXT", maxLength: 1024, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -274,8 +274,8 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     UserId = table.Column<Guid>(type: "TEXT", nullable: false),
                     TenantId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    ClaimType = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
-                    ClaimValue = table.Column<string>(type: "TEXT", maxLength: 1024, nullable: true)
+                    ClaimType = table.Column<String>(type: "TEXT", maxLength: 256, nullable: false),
+                    ClaimValue = table.Column<String>(type: "TEXT", maxLength: 1024, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -293,10 +293,10 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    LoginProvider = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false),
+                    LoginProvider = table.Column<String>(type: "TEXT", maxLength: 64, nullable: false),
                     TenantId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    ProviderKey = table.Column<string>(type: "TEXT", maxLength: 196, nullable: false),
-                    ProviderDisplayName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true)
+                    ProviderKey = table.Column<String>(type: "TEXT", maxLength: 196, nullable: false),
+                    ProviderDisplayName = table.Column<String>(type: "TEXT", maxLength: 128, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -366,10 +366,10 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    LoginProvider = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<String>(type: "TEXT", maxLength: 64, nullable: false),
+                    Name = table.Column<String>(type: "TEXT", maxLength: 128, nullable: false),
                     TenantId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    Value = table.Column<string>(type: "TEXT", nullable: true)
+                    Value = table.Column<String>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

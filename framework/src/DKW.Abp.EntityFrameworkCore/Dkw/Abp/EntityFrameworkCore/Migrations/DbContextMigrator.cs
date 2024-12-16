@@ -20,7 +20,7 @@ public class DbContextMigrator<TDbContext>(
     ) : IDbContextMigrator, ITransientDependency
     where TDbContext : DbContext, IEfCoreDbContext
 {
-    protected string DatabaseName { get; } = databaseName ?? throw new ArgumentNullException(nameof(databaseName));
+    protected String DatabaseName { get; } = databaseName ?? throw new ArgumentNullException(nameof(databaseName));
     protected ICurrentTenant CurrentTenant { get; } = currentTenant ?? throw new ArgumentNullException(nameof(currentTenant));
     protected IAbpDistributedLock DistributedLock { get; } = distributedLock ?? throw new ArgumentNullException(nameof(distributedLock));
     protected TimeSpan DistributedLockAcquireTimeout { get; set; } = TimeSpan.FromMinutes(15);
@@ -35,7 +35,7 @@ public class DbContextMigrator<TDbContext>(
     /// Apply pending EF Core schema migrations to the database.
     /// Returns true if any migration has applied.
     /// </summary>
-    protected virtual async Task<bool> MigrateDatabaseSchemaAsync(Guid? tenantId, CancellationToken cancellationToken = default)
+    protected virtual async Task<Boolean> MigrateDatabaseSchemaAsync(Guid? tenantId, CancellationToken cancellationToken = default)
     {
         var result = false;
 

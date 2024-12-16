@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <RootNamespace />
+        <RootNamespace>DKW.Abp.OpenId.EntityFrameworkCore.PostgreSql</RootNamespace>
         <TargetFramework>net9.0</TargetFramework>
     </PropertyGroup>
 

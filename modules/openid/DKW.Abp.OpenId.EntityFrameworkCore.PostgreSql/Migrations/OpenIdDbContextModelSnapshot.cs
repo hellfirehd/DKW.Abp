@@ -9,7 +9,7 @@ using Volo.Abp.EntityFrameworkCore;
 
 #nullable disable
 
-namespace Migrations
+namespace DKW.Abp.OpenId.EntityFrameworkCore.PostgreSql.Migrations
 {
     [DbContext(typeof(OpenIdDbContext))]
     partial class OpenIdDbContextModelSnapshot : ModelSnapshot

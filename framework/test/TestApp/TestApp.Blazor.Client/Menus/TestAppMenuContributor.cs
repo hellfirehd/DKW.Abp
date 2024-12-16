@@ -9,14 +9,9 @@ using Volo.Abp.UI.Navigation;
 
 namespace TestApp.Blazor.Client.Menus;
 
-public class TestAppMenuContributor : IMenuContributor
+public class TestAppMenuContributor(IConfiguration configuration) : IMenuContributor
 {
-    private readonly IConfiguration _configuration;
-
-    public TestAppMenuContributor(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
+    private readonly IConfiguration _configuration = configuration;
 
     public async Task ConfigureMenuAsync(MenuConfigurationContext context)
     {
@@ -30,7 +25,7 @@ public class TestAppMenuContributor : IMenuContributor
         }
     }
 
-    private Task ConfigureMainMenuAsync(MenuConfigurationContext context)
+    private static Task ConfigureMainMenuAsync(MenuConfigurationContext context)
     {
         var l = context.GetLocalizer<TestAppResource>();
 
@@ -52,7 +47,9 @@ public class TestAppMenuContributor : IMenuContributor
         }
         else
         {
+#pragma warning disable CS0162 // Unreachable code detected => Might not always be unreachable. Can change from build to build.
             administration.TryRemoveMenuItem(TenantManagementMenuNames.GroupName);
+#pragma warning restore CS0162 // Unreachable code detected
         }
 
         administration.SetSubItemOrder(IdentityMenuNames.GroupName, 2);

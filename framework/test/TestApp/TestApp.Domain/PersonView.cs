@@ -4,7 +4,7 @@ namespace TestApp;
 
 public class PersonView
 {
-    public string Name { get; set; }
+    public String Name { get; set; } = String.Empty;
 
     public DateTime CreationTime { get; set; }
 
