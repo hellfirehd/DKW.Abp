@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DKW.Abp.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Volo.Abp.EntityFrameworkCore;
 
-namespace DKW.Abp.EntityFrameworkCore;
+namespace DKW.Abp.OpenId.EntityFrameworkCore.PostgreSql;
 
 public class OpenIdDbContextFactory : IDesignTimeDbContextFactory<OpenIdDbContext>
 {

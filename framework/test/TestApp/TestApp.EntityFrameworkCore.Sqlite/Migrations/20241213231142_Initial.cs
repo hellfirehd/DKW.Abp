@@ -18,20 +18,20 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Tenant_Id = table.Column<Guid>(type: "TEXT", nullable: true),
                     CityId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Age = table.Column<int>(type: "INTEGER", nullable: false),
+                    Name = table.Column<String>(type: "TEXT", nullable: false),
+                    Age = table.Column<Int32>(type: "INTEGER", nullable: false),
                     Birthday = table.Column<DateTime>(type: "TEXT", nullable: true),
                     LastActive = table.Column<DateTime>(type: "TEXT", nullable: true),
                     LastActiveTime = table.Column<DateTime>(type: "TEXT", nullable: false, defaultValue: new DateTime(2024, 12, 13, 15, 11, 42, 270, DateTimeKind.Local).AddTicks(6278)),
                     HasDefaultValue = table.Column<DateTime>(type: "TEXT", nullable: false, defaultValue: new DateTime(2024, 12, 13, 15, 11, 42, 271, DateTimeKind.Local).AddTicks(7046)),
-                    EntityVersion = table.Column<int>(type: "INTEGER", nullable: false),
-                    ExtraProperties = table.Column<string>(type: "TEXT", nullable: false),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", maxLength: 40, nullable: false),
+                    EntityVersion = table.Column<Int32>(type: "INTEGER", nullable: false),
+                    ExtraProperties = table.Column<String>(type: "TEXT", nullable: false),
+                    ConcurrencyStamp = table.Column<String>(type: "TEXT", maxLength: 40, nullable: false),
                     CreationTime = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatorId = table.Column<Guid>(type: "TEXT", nullable: true),
                     LastModificationTime = table.Column<DateTime>(type: "TEXT", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    Is_Deleted = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: false),
+                    Is_Deleted = table.Column<Boolean>(type: "INTEGER", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "TEXT", nullable: true),
                     DeletionTime = table.Column<DateTime>(type: "TEXT", nullable: true)
                 },
@@ -45,8 +45,8 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 columns: table => new
                 {
                     PersonId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Number = table.Column<string>(type: "TEXT", nullable: false),
-                    Type = table.Column<int>(type: "INTEGER", nullable: false),
+                    Number = table.Column<String>(type: "TEXT", nullable: false),
+                    Type = table.Column<Int32>(type: "INTEGER", nullable: false),
                     Id = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>

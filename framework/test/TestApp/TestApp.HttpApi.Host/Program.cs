@@ -5,7 +5,7 @@ namespace TestApp;
 
 public class Program
 {
-    public async static Task<int> Main(string[] args)
+    public async static Task<Int32> Main(String[] args)
     {
         Log.Logger = new LoggerConfiguration()
            .WriteTo.Async(c => c.Console(outputTemplate: LoggingTemplates.BootstrapTemplate))

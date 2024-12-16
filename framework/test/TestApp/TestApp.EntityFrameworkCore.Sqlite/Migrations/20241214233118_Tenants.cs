@@ -36,16 +36,16 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false),
-                    NormalizedName = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false),
-                    EntityVersion = table.Column<int>(type: "INTEGER", nullable: false),
-                    ExtraProperties = table.Column<string>(type: "TEXT", nullable: false),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", maxLength: 40, nullable: false),
+                    Name = table.Column<String>(type: "TEXT", maxLength: 64, nullable: false),
+                    NormalizedName = table.Column<String>(type: "TEXT", maxLength: 64, nullable: false),
+                    EntityVersion = table.Column<Int32>(type: "INTEGER", nullable: false),
+                    ExtraProperties = table.Column<String>(type: "TEXT", nullable: false),
+                    ConcurrencyStamp = table.Column<String>(type: "TEXT", maxLength: 40, nullable: false),
                     CreationTime = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatorId = table.Column<Guid>(type: "TEXT", nullable: true),
                     LastModificationTime = table.Column<DateTime>(type: "TEXT", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: false),
+                    IsDeleted = table.Column<Boolean>(type: "INTEGER", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "TEXT", nullable: true),
                     DeletionTime = table.Column<DateTime>(type: "TEXT", nullable: true)
                 },
@@ -59,8 +59,8 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 columns: table => new
                 {
                     TenantId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false),
-                    Value = table.Column<string>(type: "TEXT", maxLength: 1024, nullable: false)
+                    Name = table.Column<String>(type: "TEXT", maxLength: 64, nullable: false),
+                    Value = table.Column<String>(type: "TEXT", maxLength: 1024, nullable: false)
                 },
                 constraints: table =>
                 {

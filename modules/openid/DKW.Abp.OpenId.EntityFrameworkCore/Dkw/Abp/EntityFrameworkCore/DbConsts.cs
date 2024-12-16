@@ -2,5 +2,5 @@
 
 public static class DbConsts
 {
-    public const string ConnectionStringName = "OpenId";
+    public const String ConnectionStringName = "OpenId";
 }

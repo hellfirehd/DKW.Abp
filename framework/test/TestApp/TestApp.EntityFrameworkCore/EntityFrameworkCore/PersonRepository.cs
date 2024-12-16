@@ -4,14 +4,10 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace TestApp.EntityFrameworkCore;
 
-public class PersonRepository : EfCoreRepository<TestAppDbContext, Person, Guid>, IPersonRepository
+public class PersonRepository(IDbContextProvider<TestAppDbContext> dbContextProvider)
+    : EfCoreRepository<TestAppDbContext, Person, Guid>(dbContextProvider), IPersonRepository
 {
-    public PersonRepository(IDbContextProvider<TestAppDbContext> dbContextProvider)
-        : base(dbContextProvider)
-    {
-    }
-
-    public async Task<PersonView> GetViewAsync(string name)
+    public async Task<PersonView?> GetViewAsync(String name)
     {
         return await (await GetDbContextAsync()).PersonView.Where(x => x.Name == name).FirstOrDefaultAsync();
     }

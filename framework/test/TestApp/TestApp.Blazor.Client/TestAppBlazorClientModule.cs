@@ -1,8 +1,8 @@
 using Blazorise.Bootstrap5;
 using Blazorise.Icons.FontAwesome;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using TestApp.Blazor.Client.Menus;
 using OpenIddict.Abstractions;
+using TestApp.Blazor.Client.Menus;
 using Volo.Abp.AspNetCore.Components.Web.Theming.Routing;
 using Volo.Abp.AspNetCore.Components.WebAssembly.BasicTheme;
 using Volo.Abp.Autofac.WebAssembly;
@@ -31,12 +31,12 @@ public class TestAppBlazorClientModule : AbpModule
         ConfigureAuthentication(builder);
         ConfigureHttpClient(context, environment);
         ConfigureBlazorise(context);
-        ConfigureRouter(context);
+        ConfigureRouter();
         ConfigureMenu(context);
-        ConfigureAutoMapper(context);
+        ConfigureAutoMapper();
     }
 
-    private void ConfigureRouter(ServiceConfigurationContext context)
+    private void ConfigureRouter()
     {
         Configure<AbpRouterOptions>(options =>
         {
@@ -52,7 +52,7 @@ public class TestAppBlazorClientModule : AbpModule
         });
     }
 
-    private void ConfigureBlazorise(ServiceConfigurationContext context)
+    private static void ConfigureBlazorise(ServiceConfigurationContext context)
     {
         context.Services
             .AddBootstrap5Providers()
@@ -82,7 +82,7 @@ public class TestAppBlazorClientModule : AbpModule
         });
     }
 
-    private void ConfigureAutoMapper(ServiceConfigurationContext context)
+    private void ConfigureAutoMapper()
     {
         Configure<AbpAutoMapperOptions>(options =>
         {

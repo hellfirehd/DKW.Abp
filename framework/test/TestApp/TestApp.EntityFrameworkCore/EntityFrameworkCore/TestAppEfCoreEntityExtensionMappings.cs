@@ -4,7 +4,7 @@ namespace TestApp.EntityFrameworkCore;
 
 public static class TestAppEfCoreEntityExtensionMappings
 {
-    private static readonly OneTimeRunner OneTimeRunner = new OneTimeRunner();
+    private static readonly OneTimeRunner OneTimeRunner = new();
 
     public static void Configure()
     {

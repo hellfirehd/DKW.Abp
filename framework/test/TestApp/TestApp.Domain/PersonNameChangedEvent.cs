@@ -2,7 +2,7 @@
 
 public class PersonNameChangedEvent
 {
-    public Person Person { get; set; }
+    public Person Person { get; set; } = default!;
 
-    public string OldName { get; set; }
+    public String OldName { get; set; } = String.Empty;
 }

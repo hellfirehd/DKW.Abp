@@ -4,7 +4,7 @@ namespace TestApp.Blazor.Client;
 
 public class Program
 {
-    public async static Task Main(string[] args)
+    public async static Task Main(String[] args)
     {
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
         var application = await builder.AddApplicationAsync<TestAppBlazorClientModule>(options =>

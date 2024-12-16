@@ -10,10 +10,10 @@ public class TestAppPermissionDefinitionProvider : PermissionDefinitionProvider
     {
         var myGroup = context.AddGroup(TestAppPermissions.GroupName);
         //Define your own permissions here. Example:
-        //myGroup.AddPermission(TestAppPermissions.MyPermission1, L("Permission:MyPermission1"));
+        myGroup.AddPermission(TestAppPermissions.MyPermission1, L("Permission:MyPermission1"));
     }
 
-    private static LocalizableString L(string name)
+    private static LocalizableString L(String name)
     {
         return LocalizableString.Create<TestAppResource>(name);
     }

@@ -14,9 +14,9 @@ public class Person : FullAuditedAggregateRoot<Guid>, IMultiTenant, IHasEntityVe
 
     public virtual Guid? CityId { get; set; }
 
-    public virtual string Name { get; private set; }
+    public virtual String Name { get; private set; } = String.Empty;
 
-    public virtual int Age { get; set; }
+    public virtual Int32 Age { get; set; }
     public virtual DateTime? Birthday { get; set; }
 
     [DisableDateTimeNormalization]
@@ -25,19 +25,19 @@ public class Person : FullAuditedAggregateRoot<Guid>, IMultiTenant, IHasEntityVe
     [NotMapped]
     public virtual DateTime? NotMappedDateTime { get; set; }
 
-    public virtual Collection<Phone> Phones { get; set; }
+    public virtual Collection<Phone> Phones { get; set; } = [];
 
     public virtual DateTime LastActiveTime { get; set; }
 
     public virtual DateTime HasDefaultValue { get; set; }
 
-    public int EntityVersion { get; set; }
+    public Int32 EntityVersion { get; set; }
 
     private Person()
     {
     }
 
-    public Person(Guid id, string name, int age, Guid? tenantId = null, Guid? cityId = null)
+    public Person(Guid id, String name, Int32 age, Guid? tenantId = null, Guid? cityId = null)
         : base(id)
     {
         Name = name;
@@ -45,10 +45,10 @@ public class Person : FullAuditedAggregateRoot<Guid>, IMultiTenant, IHasEntityVe
         TenantId = tenantId;
         CityId = cityId;
 
-        Phones = new Collection<Phone>();
+        Phones = [];
     }
 
-    public virtual void ChangeName(string name)
+    public virtual void ChangeName(String name)
     {
         Check.NotNullOrWhiteSpace(name, nameof(name));
 

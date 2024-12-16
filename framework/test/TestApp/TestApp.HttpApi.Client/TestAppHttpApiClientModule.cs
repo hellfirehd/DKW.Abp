@@ -19,7 +19,7 @@ namespace TestApp;
 [DependsOn(typeof(AbpSettingManagementHttpApiClientModule))]
 public class TestAppHttpApiClientModule : AbpModule
 {
-    public const string RemoteServiceName = "Default";
+    public const String RemoteServiceName = "Default";
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {

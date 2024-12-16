@@ -36,29 +36,29 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    ApplicationName = table.Column<string>(type: "TEXT", maxLength: 96, nullable: true),
+                    ApplicationName = table.Column<String>(type: "TEXT", maxLength: 96, nullable: true),
                     UserId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    UserName = table.Column<String>(type: "TEXT", maxLength: 256, nullable: true),
                     TenantId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    TenantName = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true),
+                    TenantName = table.Column<String>(type: "TEXT", maxLength: 64, nullable: true),
                     ImpersonatorUserId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    ImpersonatorUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    ImpersonatorUserName = table.Column<String>(type: "TEXT", maxLength: 256, nullable: true),
                     ImpersonatorTenantId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    ImpersonatorTenantName = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true),
+                    ImpersonatorTenantName = table.Column<String>(type: "TEXT", maxLength: 64, nullable: true),
                     ExecutionTime = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ExecutionDuration = table.Column<int>(type: "INTEGER", nullable: false),
-                    ClientIpAddress = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true),
-                    ClientName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
-                    ClientId = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true),
-                    CorrelationId = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true),
-                    BrowserInfo = table.Column<string>(type: "TEXT", maxLength: 512, nullable: true),
-                    HttpMethod = table.Column<string>(type: "TEXT", maxLength: 16, nullable: true),
-                    Url = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    Exceptions = table.Column<string>(type: "TEXT", nullable: true),
-                    Comments = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    HttpStatusCode = table.Column<int>(type: "INTEGER", nullable: true),
-                    ExtraProperties = table.Column<string>(type: "TEXT", nullable: false),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", maxLength: 40, nullable: false)
+                    ExecutionDuration = table.Column<Int32>(type: "INTEGER", nullable: false),
+                    ClientIpAddress = table.Column<String>(type: "TEXT", maxLength: 64, nullable: true),
+                    ClientName = table.Column<String>(type: "TEXT", maxLength: 128, nullable: true),
+                    ClientId = table.Column<String>(type: "TEXT", maxLength: 64, nullable: true),
+                    CorrelationId = table.Column<String>(type: "TEXT", maxLength: 64, nullable: true),
+                    BrowserInfo = table.Column<String>(type: "TEXT", maxLength: 512, nullable: true),
+                    HttpMethod = table.Column<String>(type: "TEXT", maxLength: 16, nullable: true),
+                    Url = table.Column<String>(type: "TEXT", maxLength: 256, nullable: true),
+                    Exceptions = table.Column<String>(type: "TEXT", nullable: true),
+                    Comments = table.Column<String>(type: "TEXT", maxLength: 256, nullable: true),
+                    HttpStatusCode = table.Column<Int32>(type: "INTEGER", nullable: true),
+                    ExtraProperties = table.Column<String>(type: "TEXT", nullable: false),
+                    ConcurrencyStamp = table.Column<String>(type: "TEXT", maxLength: 40, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,12 +72,12 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     TenantId = table.Column<Guid>(type: "TEXT", nullable: true),
                     AuditLogId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    ServiceName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    MethodName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
-                    Parameters = table.Column<string>(type: "TEXT", maxLength: 2000, nullable: true),
+                    ServiceName = table.Column<String>(type: "TEXT", maxLength: 256, nullable: true),
+                    MethodName = table.Column<String>(type: "TEXT", maxLength: 128, nullable: true),
+                    Parameters = table.Column<String>(type: "TEXT", maxLength: 2000, nullable: true),
                     ExecutionTime = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ExecutionDuration = table.Column<int>(type: "INTEGER", nullable: false),
-                    ExtraProperties = table.Column<string>(type: "TEXT", nullable: true)
+                    ExecutionDuration = table.Column<Int32>(type: "INTEGER", nullable: false),
+                    ExtraProperties = table.Column<String>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -98,11 +98,11 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                     AuditLogId = table.Column<Guid>(type: "TEXT", nullable: false),
                     TenantId = table.Column<Guid>(type: "TEXT", nullable: true),
                     ChangeTime = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ChangeType = table.Column<byte>(type: "INTEGER", nullable: false),
+                    ChangeType = table.Column<Byte>(type: "INTEGER", nullable: false),
                     EntityTenantId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    EntityId = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
-                    EntityTypeFullName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
-                    ExtraProperties = table.Column<string>(type: "TEXT", nullable: true)
+                    EntityId = table.Column<String>(type: "TEXT", maxLength: 128, nullable: true),
+                    EntityTypeFullName = table.Column<String>(type: "TEXT", maxLength: 128, nullable: false),
+                    ExtraProperties = table.Column<String>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -122,10 +122,10 @@ namespace TestApp.EntityFrameworkCore.Sqlite.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     TenantId = table.Column<Guid>(type: "TEXT", nullable: true),
                     EntityChangeId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    NewValue = table.Column<string>(type: "TEXT", maxLength: 512, nullable: true),
-                    OriginalValue = table.Column<string>(type: "TEXT", maxLength: 512, nullable: true),
-                    PropertyName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
-                    PropertyTypeFullName = table.Column<string>(type: "TEXT", maxLength: 64, nullable: false)
+                    NewValue = table.Column<String>(type: "TEXT", maxLength: 512, nullable: true),
+                    OriginalValue = table.Column<String>(type: "TEXT", maxLength: 512, nullable: true),
+                    PropertyName = table.Column<String>(type: "TEXT", maxLength: 128, nullable: false),
+                    PropertyTypeFullName = table.Column<String>(type: "TEXT", maxLength: 64, nullable: false)
                 },
                 constraints: table =>
                 {

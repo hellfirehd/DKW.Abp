@@ -8,7 +8,7 @@ public class Phone : Entity<Guid>
 {
     public virtual Guid PersonId { get; set; }
 
-    public virtual string Number { get; set; }
+    public virtual String Number { get; set; } = String.Empty;
 
     public virtual PhoneType Type { get; set; }
 
@@ -17,7 +17,7 @@ public class Phone : Entity<Guid>
 
     }
 
-    public Phone(Guid personId, string number, PhoneType type = PhoneType.Mobile)
+    public Phone(Guid personId, String number, PhoneType type = PhoneType.Mobile)
     {
         Id = Guid.NewGuid();
         PersonId = personId;
@@ -25,8 +25,8 @@ public class Phone : Entity<Guid>
         Type = type;
     }
 
-    public override object[] GetKeys()
+    public override Object[] GetKeys()
     {
-        return new object[] { PersonId, Number };
+        return [PersonId, Number];
     }
 }
