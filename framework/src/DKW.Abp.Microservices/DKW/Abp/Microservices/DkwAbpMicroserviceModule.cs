@@ -22,6 +22,7 @@ namespace DKW.Abp.Microservices;
 [DependsOn(typeof(AbpCachingStackExchangeRedisModule))]
 [DependsOn(typeof(AbpDistributedLockingModule))]
 [DependsOn(typeof(AbpSwashbuckleModule))]
+[DependsOn(typeof(DkwAbpModule))]
 public class DkwAbpMicroserviceModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)

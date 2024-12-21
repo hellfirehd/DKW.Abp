@@ -31,7 +31,8 @@ public static class ServiceConfigurationContextExtensions
         context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddAbpJwtBearer(options =>
             {
-                options.Authority = configuration[DkwAbpMicroserviceKeys.Authority];
+                options.Authority = configuration[DkwAbpMicroserviceKeys.Authority]
+                    ?? throw new DkwAbpException(DkwAbpErrorCodes.MissingConfigurationValue, DkwAbpMicroserviceKeys.Authority);
                 options.RequireHttpsMetadata = configuration.GetValue<Boolean>(DkwAbpMicroserviceKeys.RequireHttpsMetadata);
                 options.Audience = audience;
             });
@@ -70,9 +71,11 @@ public static class ServiceConfigurationContextExtensions
     public static ServiceConfigurationContext ConfigureSwaggerServices(this ServiceConfigurationContext context, String name, String version = "v1")
     {
         var configuration = context.Services.GetConfiguration();
+        var authority = configuration[DkwAbpMicroserviceKeys.Authority]
+            ?? throw new DkwAbpException(DkwAbpErrorCodes.MissingConfigurationValue, DkwAbpMicroserviceKeys.Authority);
 
         context.Services.AddAbpSwaggerGenWithOAuth(
-            configuration[DkwAbpMicroserviceKeys.Authority]!,
+            authority,
             new Dictionary<String, String> {
                 {name, $"{name} API"}
             },
