@@ -37,22 +37,21 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="ConfigureAwait.Fody" Version="3.3.2" PrivateAssets="All" />
-        <PackageReference Include="Fody" Version="6.9.1">
+        <PackageReference Include="ConfigureAwait.Fody" PrivateAssets="All" />
+        <PackageReference Include="Fody">
             <PrivateAssets>All</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.SourceLink.Gitea" Version="8.*">
+        <PackageReference Include="Microsoft.SourceLink.Gitea">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.*">
+        <PackageReference Include="Microsoft.SourceLink.GitHub">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Nerdbank.GitVersioning" Condition="!Exists('packages.config')">
             <PrivateAssets>all</PrivateAssets>
-            <Version>3.*</Version>
         </PackageReference>
     </ItemGroup>
 

@@ -170,7 +170,7 @@ public class OpenIdDataSeedContributor :
 
         if (endpoint.RedirectUris.Length > 0 || endpoint.PostLogoutRedirectUris.Length > 0)
         {
-            application.Permissions.Add(Permissions.Endpoints.Logout);
+            application.Permissions.Add(Permissions.Endpoints.EndSession);
         }
 
         foreach (var grantType in endpoint.GrantTypes)
@@ -221,7 +221,7 @@ public class OpenIdDataSeedContributor :
             if (grantType == GrantTypes.DeviceCode)
             {
                 application.Permissions.Add(Permissions.GrantTypes.DeviceCode);
-                application.Permissions.Add(Permissions.Endpoints.Device);
+                application.Permissions.Add(Permissions.Endpoints.DeviceAuthorization);
             }
 
             if (grantType == GrantTypes.Implicit)

@@ -10,10 +10,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
-        <PackageReference Include="NSubstitute" Version="5.3.0" />
-        <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="9.2.3" />
-        <PackageReference Include="Volo.Abp.AspNetCore" Version="9.2.3" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="NSubstitute" />
+        <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" />
+        <PackageReference Include="Volo.Abp.AspNetCore" />
     </ItemGroup>
 
     <ItemGroup>
