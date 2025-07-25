@@ -9,4 +9,10 @@
         <ProjectReference Include="..\DKW.Abp.IdGeneration.Application.Contracts\DKW.Abp.IdGeneration.Application.Contracts.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Update="Fody" Version="6.9.2">
+        <PrivateAssets>all</PrivateAssets>
+      </PackageReference>
+    </ItemGroup>
+
 </Project>
