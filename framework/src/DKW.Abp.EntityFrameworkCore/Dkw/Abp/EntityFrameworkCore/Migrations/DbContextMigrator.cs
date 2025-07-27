@@ -47,7 +47,7 @@ public class DbContextMigrator<TDbContext>(
                 if (tenantId == null)
                 {
                     //Migrating the host database
-                    Logger.LogInformation("Migrating database of host. Database Name: {DatabaseName}", DatabaseName);
+                    Logger.LogInformation("Migrating host database: {DatabaseName}", DatabaseName);
                     result = await MigrateDatabaseSchemaWithDbContextAsync(uow, cancellationToken);
                 }
                 else
@@ -57,8 +57,8 @@ public class DbContextMigrator<TDbContext>(
                         !tenantConfiguration.ConnectionStrings.GetOrDefault(DatabaseName).IsNullOrWhiteSpace())
                     {
                         //Migrating the tenant database (only if tenant has a separate database)
-                        Logger.LogInformation("Migrating separate database of tenant. Database Name: {DatabaseName}, TenantId: {tenantId}",
-                            DatabaseName, tenantId);
+                        Logger.LogInformation("Migrating separate database of tenant. Database Name: {DatabaseName}, TenantId: {tenantId}", DatabaseName, tenantId);
+
                         result = await MigrateDatabaseSchemaWithDbContextAsync(uow, cancellationToken);
                     }
                 }
@@ -72,28 +72,34 @@ public class DbContextMigrator<TDbContext>(
 
     protected virtual async Task<Boolean> MigrateDatabaseSchemaWithDbContextAsync(IUnitOfWork uow, CancellationToken cancellationToken)
     {
-        var dbContext = await uow.ServiceProvider
+        var unitOfWork = await uow.ServiceProvider
             .GetRequiredService<IDbContextProvider<TDbContext>>()
             .GetDbContextAsync();
 
-        await using (await WaitForDistributedLockAsync(dbContext))
+        await using (await WaitForDistributedLockAsync(unitOfWork))
         {
-            if ((await dbContext.Database.GetPendingMigrationsAsync(cancellationToken: cancellationToken)).Any())
+            var pending = await unitOfWork.Database.GetPendingMigrationsAsync(cancellationToken) ?? [];
+
+            Logger.LogInformation("Found {Count} pending migrations for database {DatabaseName}.", pending.Count(), DatabaseName);
+
+            foreach (var migration in pending)
             {
-                var strategy = dbContext.Database.CreateExecutionStrategy();
-                await strategy.ExecuteAsync(dbContext.Database.MigrateAsync, cancellationToken);
-                return true;
+                Logger.LogInformation("Pending Migration: {Migration}", migration);
             }
+
+            var strategy = unitOfWork.Database.CreateExecutionStrategy();
+
+            await strategy.ExecuteAsync(unitOfWork.Database.MigrateAsync, cancellationToken);
         }
 
-        return false;
+        return true;
     }
 
-    protected virtual async Task<IAsyncDisposable> WaitForDistributedLockAsync(TDbContext dbContext)
+    protected virtual async Task<IAsyncDisposable> WaitForDistributedLockAsync(TDbContext unitOfWork)
     {
         var distributedLockHandle = await DistributedLock.TryAcquireAsync(
             "DatabaseMigrationEventHandler_" +
-            dbContext.Database.GetConnectionString()!.ToUpperInvariant().ToMd5(),
+            unitOfWork.Database.GetConnectionString()!.ToUpperInvariant().ToMd5(),
             DistributedLockAcquireTimeout
         );
 

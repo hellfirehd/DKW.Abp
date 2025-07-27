@@ -20,18 +20,18 @@ public class DbContextMigrationManager(
     {
         _logger.LogInformation("Starting migrations...");
 
-        await MigrateDbContextAsync("Host", cancellationToken);
+        await MigrateDbContextAsync(cancellationToken);
 
         _logger.LogInformation("Completed migrations.");
     }
 
-    private async Task MigrateDbContextAsync(String name, CancellationToken cancellationToken = default)
+    private async Task MigrateDbContextAsync(CancellationToken cancellationToken = default)
     {
-        _logger.LogInformation("Migrating {Name} database...", name);
         using (var scope = ServiceScopeFactory.CreateScope())
         {
             foreach (var migratorType in _options.Migrators)
             {
+                _logger.LogInformation("Migrating {Name} ...", migratorType.Name);
                 var migrator = (IDbContextMigrator)scope.ServiceProvider.GetRequiredService(migratorType);
 
                 try

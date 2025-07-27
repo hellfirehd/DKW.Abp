@@ -16,8 +16,8 @@ namespace TestApp.EntityFrameworkCore;
 [ConnectionStringName("Default")]
 public class TestAppDbContext(DbContextOptions<TestAppDbContext> options) : AbpDbContext<TestAppDbContext>(options)
 {
-    public DbSet<Person> People { get; set; }
-    public DbSet<PersonView> PersonView { get; set; }
+    public DbSet<Person> People { get; set; } = default!;
+    public DbSet<PersonView> PersonView { get; set; } = default!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

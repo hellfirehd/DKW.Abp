@@ -1,3 +1,4 @@
+using DKW.Abp.Ddd;
 using DKW.Abp.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
@@ -6,6 +7,7 @@ using Volo.Abp.Modularity;
 namespace DKW.Abp.EntityFrameworkCore;
 
 [DependsOn(typeof(AbpEntityFrameworkCoreModule))]
+[DependsOn(typeof(DkwAbpDddModule))]
 public class DkwAbpEntityFrameworkCoreModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)

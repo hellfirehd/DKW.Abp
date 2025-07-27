@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace>DKW</RootNamespace>
+        <TargetFramework>net9.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.Core" />
+        <PackageReference Include="Volo.Abp.Specifications" />
+    </ItemGroup>
+
+</Project>

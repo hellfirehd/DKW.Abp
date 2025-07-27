@@ -39,8 +39,8 @@ public class Migration_and_Seeding_test
             await app.MigrateAsync();
             await app.SeedAsync();
 
-            var dbContext = app.Services.GetRequiredService<TestAppDbContext>();
-            dbContext.People.Count().ShouldBe(1);
+            var unitOfWork = app.Services.GetRequiredService<TestAppDbContext>();
+            (await unitOfWork.People.CountAsync()).ShouldBe(1);
         }
     }
 
