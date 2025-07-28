@@ -7,13 +7,12 @@
 
 
     <ItemGroup>
-        <PackageReference Include="Serilog" />
         <PackageReference Include="Volo.Abp.Autofac" />
     </ItemGroup>
 
 
     <ItemGroup>
-      <Folder Include="Dkw\Abp\Hosting\Initialization\" />
+        <Folder Include="Dkw\Abp\Hosting\Initialization\" />
     </ItemGroup>
 
 </Project>

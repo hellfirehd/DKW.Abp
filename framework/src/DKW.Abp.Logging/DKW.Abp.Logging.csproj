@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <RootNamespace />
@@ -6,25 +6,21 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
         <PackageReference Include="OpenIddict.Abstractions" />
-        <PackageReference Include="Serilog" />
         <PackageReference Include="Serilog.Enrichers.Environment" />
-        <PackageReference Include="Serilog.Expressions" />
         <PackageReference Include="Serilog.Extensions.Hosting" />
-        <PackageReference Include="Serilog.Extensions.Logging" />
-        <PackageReference Include="Serilog.Formatting.Compact" />
         <PackageReference Include="Serilog.Settings.Configuration" />
         <PackageReference Include="Serilog.Sinks.Async" />
         <PackageReference Include="Serilog.Sinks.Console" />
-        <PackageReference Include="Serilog.Sinks.File" />
-        <PackageReference Include="Serilog.Sinks.PeriodicBatching" />
+        <PackageReference Include="Serilog.Sinks.File">
+          <TreatAsUsed>true</TreatAsUsed>
+        </PackageReference>
         <PackageReference Include="Serilog.Sinks.Seq" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DKW.Abp.Security\DKW.Abp.Security.csproj" />
-      <ProjectReference Include="..\Dkw.Abp\Dkw.Abp.csproj" />
+        <ProjectReference Include="..\DKW.Abp.Security\DKW.Abp.Security.csproj" />
+        <ProjectReference Include="..\Dkw.Abp\Dkw.Abp.csproj" />
     </ItemGroup>
 
 </Project>

@@ -14,14 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-        </PackageReference>
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Dkw.Abp.Ddd\DKW.Abp.Ddd.csproj" />
+        <ProjectReference Include="..\Dkw.Abp.Ddd\DKW.Abp.Ddd.csproj" />
     </ItemGroup>
 
 </Project>

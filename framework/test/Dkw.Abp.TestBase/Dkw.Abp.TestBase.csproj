@@ -14,17 +14,4 @@
         <PackageReference Include="Volo.Abp.BackgroundJobs.Abstractions" />
     </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" />
-        <PackageReference Include="NSubstitute" />
-        <PackageReference Include="NSubstitute.Analyzers.CSharp">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="Shouldly" />
-        <PackageReference Include="xunit" />
-        <PackageReference Include="xunit.extensibility.execution" />
-        <PackageReference Include="xunit.runner.visualstudio" />
-    </ItemGroup>
-
 </Project>
