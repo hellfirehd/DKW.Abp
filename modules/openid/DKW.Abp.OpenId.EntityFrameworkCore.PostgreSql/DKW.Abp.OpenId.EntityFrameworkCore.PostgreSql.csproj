@@ -3,6 +3,7 @@
     <PropertyGroup>
         <RootNamespace>Dkw.Abp.OpenId.EntityFrameworkCore.PostgreSql</RootNamespace>
         <TargetFramework>net9.0</TargetFramework>
+        <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
