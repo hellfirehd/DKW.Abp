@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace DKW.Abp.OpenId;
+namespace Dkw.Abp.OpenId;
 
 [DebuggerDisplay("{Key}:{ClientId}")]
 public class OpenIdScope

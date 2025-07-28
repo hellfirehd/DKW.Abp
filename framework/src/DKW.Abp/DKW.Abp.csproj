@@ -6,14 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="OpenIddict.Abstractions" />
-        <PackageReference Include="Volo.Abp.Autofac" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Update="Fody">
-        <PrivateAssets>all</PrivateAssets>
-      </PackageReference>
+        <PackageReference Include="Volo.Abp.Core" />
     </ItemGroup>
 
 </Project>

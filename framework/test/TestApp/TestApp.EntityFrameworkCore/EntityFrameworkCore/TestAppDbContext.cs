@@ -31,6 +31,8 @@ public class TestAppDbContext(DbContextOptions<TestAppDbContext> options) : AbpD
     {
         base.OnModelCreating(modelBuilder);
 
+        modelBuilder.ConfigureTestApp();
+
         modelBuilder.ConfigureAuditLogging();
         modelBuilder.ConfigureFeatureManagement();
         modelBuilder.ConfigureIdentity();
@@ -38,27 +40,6 @@ public class TestAppDbContext(DbContextOptions<TestAppDbContext> options) : AbpD
         modelBuilder.ConfigurePermissionManagement();
         modelBuilder.ConfigureSettingManagement();
         modelBuilder.ConfigureTenantManagement();
-
-        modelBuilder.Entity<Phone>(b =>
-        {
-            b.HasKey(p => new { p.PersonId, p.Number });
-        });
-
-        modelBuilder.Entity<Person>(b =>
-        {
-            b.Property(x => x.LastActiveTime).ValueGeneratedOnAddOrUpdate().HasDefaultValue(DateTime.Now);
-            b.Property(x => x.HasDefaultValue).HasDefaultValue(DateTime.Now);
-            b.Property(x => x.TenantId).HasColumnName("Tenant_Id");
-            b.Property(x => x.IsDeleted).HasColumnName("Is_Deleted");
-        });
-
-        modelBuilder.Entity<PersonView>(p =>
-        {
-            p.HasNoKey();
-            p.ToView("View_PersonView");
-
-            p.ApplyObjectExtensionMappings();
-        });
 
         modelBuilder.TryConfigureObjectExtensions<TestAppDbContext>();
     }

@@ -6,7 +6,7 @@ using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 using System.Reflection;
 
-namespace DKW.Abp.Logging;
+namespace Dkw.Abp.Logging;
 
 public static class ServiceCollectionExtensions
 {

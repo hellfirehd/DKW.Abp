@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 
-namespace DKW.Abp.EntityFrameworkCore.Seeding;
+namespace Dkw.Abp.EntityFrameworkCore.Seeding;
 
 public class SeedingManager(
     ILogger<SeedingManager> logger,

@@ -1,6 +1,6 @@
 
-using DKW.Abp.Logging;
-using DKW.Abp.Microservices;
+using Dkw.Abp.Logging;
+using Dkw.Abp.Microservices;
 using Microsoft.IdentityModel.Logging;
 using TestApp.EntityFrameworkCore.Sqlite;
 using TestApp.MultiTenancy;
@@ -11,8 +11,8 @@ using Volo.Abp.VirtualFileSystem;
 
 namespace TestApp;
 
-[DependsOn(typeof(DkwAbpLoggingModule))]
-[DependsOn(typeof(DkwAbpMicroserviceModule))]
+[DependsOn(typeof(DkwLoggingModule))]
+[DependsOn(typeof(DkwMicroserviceModule))]
 [DependsOn(typeof(TestAppApplicationModule))]
 [DependsOn(typeof(TestAppEntityFrameworkCoreSqliteModule))]
 [DependsOn(typeof(TestAppHttpApiModule))]

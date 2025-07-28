@@ -15,7 +15,7 @@
 using System.Linq.Expressions;
 using Volo.Abp.Specifications;
 
-namespace DKW.Abp.Ddd.Querying;
+namespace Dkw.Abp.Ddd.Querying;
 
 public interface IQuerySpecification<TEntity> : ISpecification<TEntity>
 {

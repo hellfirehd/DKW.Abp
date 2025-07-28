@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DKW.Abp.EntityFrameworkCore;
+namespace Dkw.Abp.EntityFrameworkCore;
 
 public class EntityFrameworkCoreBuilder(WebApplicationBuilder Builder, DbContextOptionsBuilder dbContextOptionsBuilder)
 {

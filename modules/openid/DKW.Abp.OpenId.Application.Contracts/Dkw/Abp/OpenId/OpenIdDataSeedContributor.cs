@@ -8,7 +8,7 @@ using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace DKW.Abp.OpenId;
+namespace Dkw.Abp.OpenId;
 
 public class OpenIdDataSeedContributor :
     IDataSeedContributor,

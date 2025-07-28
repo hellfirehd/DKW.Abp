@@ -15,7 +15,7 @@
 using System.Linq.Expressions;
 using Volo.Abp.Specifications;
 
-namespace DKW.Abp.Ddd.Querying;
+namespace Dkw.Abp.Ddd.Querying;
 public class QuerySpecification<TEntity>(Expression<Func<TEntity, Boolean>> expression) : ExpressionSpecification<TEntity>(expression), IQuerySpecification<TEntity> where TEntity : class
 {
     public QuerySpecification(ISpecification<TEntity> specification) : this(specification.ToExpression()) { }

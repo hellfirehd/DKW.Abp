@@ -1,4 +1,4 @@
-namespace DKW.Abp.EntityFrameworkCore.Migrations;
+namespace Dkw.Abp.EntityFrameworkCore.Migrations;
 
 public interface IDbContextMigrator
 {

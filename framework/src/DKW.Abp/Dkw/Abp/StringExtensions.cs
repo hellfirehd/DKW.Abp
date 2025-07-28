@@ -1,4 +1,4 @@
-﻿namespace DKW.Abp;
+﻿namespace Dkw.Abp;
 
 public static class StringExtensions
 {

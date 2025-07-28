@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DKW.Abp.OpenId;
+namespace Dkw.Abp.OpenId;
 
 public class OpenIdEndpointProvider : Dictionary<String, OpenIdEndpoint>,
     IOpenIdEndpointProvider

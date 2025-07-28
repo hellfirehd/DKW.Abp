@@ -5,7 +5,7 @@ using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.OpenIddict.EntityFrameworkCore;
 
-namespace DKW.Abp.EntityFrameworkCore;
+namespace Dkw.Abp.EntityFrameworkCore;
 
 [IgnoreMultiTenancy]
 [ConnectionStringName(DbConsts.ConnectionStringName)]

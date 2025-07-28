@@ -1,4 +1,4 @@
-using DKW.Abp.EntityFrameworkCore;
+using Dkw.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Sqlite;
 using Volo.Abp.Modularity;
@@ -6,7 +6,7 @@ using Volo.Abp.Modularity;
 namespace TestApp.EntityFrameworkCore.Sqlite;
 
 [DependsOn(typeof(AbpEntityFrameworkCoreSqliteModule))]
-[DependsOn(typeof(DkwAbpEntityFrameworkCoreModule))]
+[DependsOn(typeof(DkwEntityFrameworkCoreModule))]
 [DependsOn(typeof(TestAppEntityFrameworkCoreModule))]
 public class TestAppEntityFrameworkCoreSqliteModule : AbpModule
 {

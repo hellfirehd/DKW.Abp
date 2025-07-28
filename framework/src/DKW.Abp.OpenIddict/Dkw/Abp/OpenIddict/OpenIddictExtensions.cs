@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Security.Cryptography.X509Certificates;
 
-namespace DKW.Abp.OpenIddict;
+namespace Dkw.Abp.OpenIddict;
 
 public static class OpenIddictExtensions
 {

@@ -2,7 +2,7 @@ using OpenIddict.Abstractions;
 using System.Diagnostics;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace DKW.Abp.OpenId;
+namespace Dkw.Abp.OpenId;
 
 [DebuggerDisplay("{Key}:{ClientId}")]
 public class OpenIdEndpoint

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
 
-namespace DKW.Abp.EntityFrameworkCore.Migrations;
+namespace Dkw.Abp.EntityFrameworkCore.Migrations;
 
 public class DbContextMigrationManager(
         ILogger<DbContextMigrationManager> logger,

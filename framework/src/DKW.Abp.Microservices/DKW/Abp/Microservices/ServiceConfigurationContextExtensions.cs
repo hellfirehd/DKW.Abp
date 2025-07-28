@@ -10,7 +10,7 @@ using Volo.Abp.Caching;
 using Volo.Abp.Modularity;
 using Volo.Abp.Security.Claims;
 
-namespace DKW.Abp.Microservices;
+namespace Dkw.Abp.Microservices;
 
 public static class ServiceConfigurationContextExtensions
 {
@@ -31,9 +31,9 @@ public static class ServiceConfigurationContextExtensions
         context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddAbpJwtBearer(options =>
             {
-                options.Authority = configuration[DkwAbpMicroserviceKeys.Authority]
-                    ?? throw new DkwAbpException(DkwAbpErrorCodes.MissingConfigurationValue, DkwAbpMicroserviceKeys.Authority);
-                options.RequireHttpsMetadata = configuration.GetValue<Boolean>(DkwAbpMicroserviceKeys.RequireHttpsMetadata);
+                options.Authority = configuration[DkwMicroserviceKeys.Authority]
+                    ?? throw new DkwException(DkwErrorCodes.MissingConfigurationValue, DkwMicroserviceKeys.Authority);
+                options.RequireHttpsMetadata = configuration.GetValue<Boolean>(DkwMicroserviceKeys.RequireHttpsMetadata);
                 options.Audience = audience;
             });
 
@@ -63,16 +63,16 @@ public static class ServiceConfigurationContextExtensions
         var dataProtectionBuilder = context.Services.AddDataProtection().SetApplicationName(name);
         if (!hostingEnvironment.IsDevelopment())
         {
-            var redis = ConnectionMultiplexer.Connect(configuration[DkwAbpMicroserviceKeys.RedisConfiguration] ?? "redis");
-            dataProtectionBuilder.PersistKeysToStackExchangeRedis(redis, DkwAbpMicroserviceKeys.DataProtectionKey);
+            var redis = ConnectionMultiplexer.Connect(configuration[DkwMicroserviceKeys.RedisConfiguration] ?? "redis");
+            dataProtectionBuilder.PersistKeysToStackExchangeRedis(redis, DkwMicroserviceKeys.DataProtectionKey);
         }
     }
 
     public static ServiceConfigurationContext ConfigureSwaggerServices(this ServiceConfigurationContext context, String name, String version = "v1")
     {
         var configuration = context.Services.GetConfiguration();
-        var authority = configuration[DkwAbpMicroserviceKeys.Authority]
-            ?? throw new DkwAbpException(DkwAbpErrorCodes.MissingConfigurationValue, DkwAbpMicroserviceKeys.Authority);
+        var authority = configuration[DkwMicroserviceKeys.Authority]
+            ?? throw new DkwException(DkwErrorCodes.MissingConfigurationValue, DkwMicroserviceKeys.Authority);
 
         context.Services.AddAbpSwaggerGenWithOAuth(
             authority,

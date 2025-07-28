@@ -3,7 +3,7 @@ using Microsoft.Extensions.Hosting;
 using Volo.Abp.Data;
 using Volo.Abp.Modularity;
 
-namespace DKW.Abp.OpenId;
+namespace Dkw.Abp.OpenId;
 
 [DependsOn(typeof(AbpDataModule))]
 public class DkwOpenIdApplicationContractsModule : AbpModule

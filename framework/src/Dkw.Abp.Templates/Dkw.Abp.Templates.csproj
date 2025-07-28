@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace />
+        <TargetFramework>net9.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Dkw.Abp.Templates.Contracts\DKW.Abp.Templates.Contracts.csproj" />
+      <ProjectReference Include="..\Dkw.Abp\Dkw.Abp.csproj" />
+    </ItemGroup>
+
+</Project>

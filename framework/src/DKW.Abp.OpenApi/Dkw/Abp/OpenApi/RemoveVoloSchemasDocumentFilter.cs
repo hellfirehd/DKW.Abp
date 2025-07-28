@@ -1,7 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace DKW.Abp.OpenApi;
+namespace Dkw.Abp.OpenApi;
 
 public class RemoveVoloSchemasDocumentFilter : IDocumentFilter
 {

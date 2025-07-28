@@ -2,7 +2,7 @@ using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace DKW.Abp;
+namespace Dkw.Abp;
 
 /// <summary>ResourceHelper</summary>
 [DebuggerStepThrough]

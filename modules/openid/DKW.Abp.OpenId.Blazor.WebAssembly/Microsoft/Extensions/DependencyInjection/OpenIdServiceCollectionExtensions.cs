@@ -1,4 +1,4 @@
-using DKW.Abp.OpenId;
+using Dkw.Abp.OpenId;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection.Extensions;

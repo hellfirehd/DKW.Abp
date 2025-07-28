@@ -18,13 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DKW.Abp\DKW.Abp.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Update="Fody">
-        <PrivateAssets>all</PrivateAssets>
-      </PackageReference>
+      <ProjectReference Include="..\Dkw.Abp\Dkw.Abp.csproj" />
     </ItemGroup>
 
 </Project>

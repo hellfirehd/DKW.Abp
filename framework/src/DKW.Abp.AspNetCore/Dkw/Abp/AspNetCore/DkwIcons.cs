@@ -1,4 +1,4 @@
-﻿namespace DKW.Abp.AspNetCore;
+﻿namespace Dkw.Abp.AspNetCore;
 
 public static class DkwIcons
 {

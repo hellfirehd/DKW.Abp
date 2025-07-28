@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace />
+        <TargetFramework>net9.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.Core" />
+        <PackageReference Include="Volo.Abp.Ddd.Domain" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Dkw.Abp.Ddd\DKW.Abp.Ddd.csproj" />
+      <ProjectReference Include="..\Dkw.Abp\Dkw.Abp.csproj" />
+    </ItemGroup>
+
+</Project>

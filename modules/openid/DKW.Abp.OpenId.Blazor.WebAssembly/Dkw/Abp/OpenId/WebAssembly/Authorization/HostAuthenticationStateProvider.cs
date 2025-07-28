@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using System.Net.Http.Json;
 using System.Security.Claims;
 
-namespace DKW.Abp.OpenId.WebAssembly.Authorization;
+namespace Dkw.Abp.OpenId.WebAssembly.Authorization;
 
 // Original source: https://github.com/berhir/BlazorWebAssemblyCookieAuth.
 public class HostAuthenticationStateProvider(

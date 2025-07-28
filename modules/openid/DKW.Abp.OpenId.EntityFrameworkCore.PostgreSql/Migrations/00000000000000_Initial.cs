@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace DKW.Abp.OpenId.EntityFrameworkCore.PostgreSql.Migrations
+namespace Dkw.Abp.OpenId.EntityFrameworkCore.PostgreSql.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

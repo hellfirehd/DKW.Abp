@@ -1,4 +1,4 @@
-﻿namespace DKW.Abp.Logging;
+﻿namespace Dkw.Abp.Logging;
 
 public static class LoggingTemplateDefaults
 {

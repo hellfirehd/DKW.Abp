@@ -1,4 +1,4 @@
-﻿using DKW.Abp.Logging;
+﻿using Dkw.Abp.Logging;
 using Serilog;
 
 namespace TestApp;

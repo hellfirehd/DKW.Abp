@@ -1,6 +1,6 @@
 ﻿using Flurl;
 
-namespace DKW.Abp.OpenId;
+namespace Dkw.Abp.OpenId;
 
 public class DkwOpenIdEndpoints(IOpenIdEndpointProvider provider) : IOpenIdAuthority
 {

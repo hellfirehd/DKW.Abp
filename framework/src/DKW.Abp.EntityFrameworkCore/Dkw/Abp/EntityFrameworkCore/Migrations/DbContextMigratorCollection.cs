@@ -1,5 +1,5 @@
 ﻿using Volo.Abp.Collections;
 
-namespace DKW.Abp.EntityFrameworkCore.Migrations;
+namespace Dkw.Abp.EntityFrameworkCore.Migrations;
 
 public class DbContextMigratorCollection : TypeList<IDbContextMigrator>;

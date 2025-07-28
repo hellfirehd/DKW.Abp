@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace />
+        <TargetFramework>net9.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.Emailing" />
+        <PackageReference Include="Volo.Abp.Security" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Dkw.Abp\Dkw.Abp.csproj" />
+    </ItemGroup>
+    
+</Project>

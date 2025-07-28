@@ -21,13 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DKW.Abp.Ddd\DKW.Abp.Ddd.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Update="Fody">
-        <PrivateAssets>all</PrivateAssets>
-      </PackageReference>
+      <ProjectReference Include="..\Dkw.Abp.Ddd\DKW.Abp.Ddd.csproj" />
     </ItemGroup>
 
 </Project>

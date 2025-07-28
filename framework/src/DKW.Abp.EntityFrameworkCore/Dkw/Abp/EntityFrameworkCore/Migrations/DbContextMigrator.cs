@@ -8,7 +8,7 @@ using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Uow;
 
-namespace DKW.Abp.EntityFrameworkCore.Migrations;
+namespace Dkw.Abp.EntityFrameworkCore.Migrations;
 
 public class DbContextMigrator<TDbContext>(
     String databaseName,

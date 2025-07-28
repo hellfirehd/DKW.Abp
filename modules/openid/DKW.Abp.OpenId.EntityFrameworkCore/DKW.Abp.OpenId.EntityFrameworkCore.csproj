@@ -14,10 +14,4 @@
         <ProjectReference Include="..\..\..\framework\src\DKW.Abp.EntityFrameworkCore\DKW.Abp.EntityFrameworkCore.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Update="Fody">
-        <PrivateAssets>all</PrivateAssets>
-      </PackageReference>
-    </ItemGroup>
-
 </Project>

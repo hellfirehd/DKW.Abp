@@ -1,4 +1,4 @@
-using DKW.Abp.EntityFrameworkCore.Migrations;
+using Dkw.Abp.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Hosting;
 
 namespace Microsoft.Extensions.DependencyInjection;

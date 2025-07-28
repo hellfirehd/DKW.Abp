@@ -1,4 +1,4 @@
-﻿namespace DKW.Abp.OpenId.WebAssembly;
+﻿namespace Dkw.Abp.OpenId.WebAssembly;
 
 public static class HttpClients
 {

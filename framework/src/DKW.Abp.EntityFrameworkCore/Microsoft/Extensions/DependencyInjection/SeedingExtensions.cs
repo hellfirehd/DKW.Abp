@@ -1,4 +1,4 @@
-using DKW.Abp.EntityFrameworkCore.Seeding;
+using Dkw.Abp.EntityFrameworkCore.Seeding;
 using Microsoft.Extensions.Hosting;
 
 namespace Microsoft.Extensions.DependencyInjection;

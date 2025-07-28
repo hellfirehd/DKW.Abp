@@ -28,7 +28,18 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
+        <IsTestProject Condition="$(MSBuildProjectFullPath.Contains('test')) and ($(MSBuildProjectName.EndsWith('Tests')) or $(MSBuildProjectName.EndsWith('.TestBase')))">true</IsTestProject>
     </PropertyGroup>
+
+    <ItemGroup>
+        <!--<Using Include="System" />-->
+        <Using Include="System.Collections.Generic" />
+        <Using Include="System.Diagnostics.CodeAnalysis" />
+        <Using Include="System.Globalization" />
+        <Using Include="System.Linq" />
+        <!--<Using Include="System.Threading" />-->
+        <Using Include="System.Threading.Tasks" />
+    </ItemGroup>
 
     <ItemGroup>
         <None Include="..\..\..\dkw.png" Pack="true" PackagePath="\" />
@@ -53,6 +64,24 @@
         <PackageReference Include="Nerdbank.GitVersioning" Condition="!Exists('packages.config')">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
+    </ItemGroup>
+
+    <PropertyGroup Condition="'$(IsTestProject)' == 'true'">
+        <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+        <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+        <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+        <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+        <GenerateRuntimeConfigDevFile>true</GenerateRuntimeConfigDevFile>
+        <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+        <IsPackable>false</IsPackable>
+        <IsPublishable>False</IsPublishable>
+        <LangVersion>latest</LangVersion>
+        <NoWarn>$(NoWarn);CS1591;CS0436</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(IsTestProject)' == 'true'">
+        <Using Include="Shouldly;" />
+        <Using Include="Xunit"/>
     </ItemGroup>
 
     <ItemGroup>

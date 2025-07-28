@@ -1,4 +1,4 @@
-﻿namespace DKW.Abp.OpenId;
+﻿namespace Dkw.Abp.OpenId;
 
 public interface IOpenIdAuthority
 {

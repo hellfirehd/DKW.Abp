@@ -1,4 +1,4 @@
-﻿namespace DKW.Abp.EntityFrameworkCore;
+﻿namespace Dkw.Abp.EntityFrameworkCore;
 
 public static class DbConsts
 {

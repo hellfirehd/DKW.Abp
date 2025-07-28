@@ -1,4 +1,4 @@
-using DKW.Abp.Microservices;
+using Dkw.Abp.Microservices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -46,7 +46,7 @@ public class Migration_and_Seeding_test
 
     [DependsOn(typeof(TestAppApplicationModule))] // This references TestAppDomainModule which contains the PersonContributor.
     [DependsOn(typeof(TestAppEntityFrameworkCoreSqliteModule))] // This contains the migrations.
-    [DependsOn(typeof(DkwAbpMicroserviceModule))] // This references things that ABP needs to run.
+    [DependsOn(typeof(DkwMicroserviceModule))] // This references things that ABP needs to run.
     public class MigrationsTestModule : AbpModule
     {
         // Holds the connection open for the duration of the test

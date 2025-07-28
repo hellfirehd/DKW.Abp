@@ -1,7 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace DKW.Abp.Microservices;
+namespace Dkw.Abp.Microservices;
 
 public class VoloDocumentFilter : IDocumentFilter
 {

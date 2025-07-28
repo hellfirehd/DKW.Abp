@@ -1,4 +1,4 @@
-﻿namespace DKW.Abp.OpenIddict;
+﻿namespace Dkw.Abp.OpenIddict;
 
 public class DkwOpenIddictOptions
 {

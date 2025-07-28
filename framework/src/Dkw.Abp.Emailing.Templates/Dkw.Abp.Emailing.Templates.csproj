@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace />
+        <TargetFramework>net9.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Dkw\Abp\Templates\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Dkw.Abp.Emailing\Dkw.Abp.Emailing.csproj" />
+      <ProjectReference Include="..\Dkw.Abp.Templates.Contracts\DKW.Abp.Templates.Contracts.csproj" />
+    </ItemGroup>
+
+</Project>
