@@ -10,7 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\DKW.Abp.OpenId.Application.Contracts\DKW.Abp.OpenId.Application.Contracts.csproj" />
+        <ProjectReference Include="..\Dkw.Abp.OpenId.Application.Contracts\Dkw.Abp.OpenId.Application.Contracts.csproj" />
     </ItemGroup>
 
 </Project>

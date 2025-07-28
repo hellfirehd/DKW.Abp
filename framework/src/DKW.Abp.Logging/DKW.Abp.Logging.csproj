@@ -19,7 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\DKW.Abp.Security\DKW.Abp.Security.csproj" />
+        <ProjectReference Include="..\Dkw.Abp.Security\Dkw.Abp.Security.csproj" />
         <ProjectReference Include="..\Dkw.Abp\Dkw.Abp.csproj" />
     </ItemGroup>
 

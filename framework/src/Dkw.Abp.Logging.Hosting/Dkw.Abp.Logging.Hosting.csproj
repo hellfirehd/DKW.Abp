@@ -10,7 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DKW.Abp.Logging\DKW.Abp.Logging.csproj" />
+      <ProjectReference Include="..\Dkw.Abp.Logging\Dkw.Abp.Logging.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <RootNamespace>DKW.Abp.OpenId.EntityFrameworkCore.PostgreSql</RootNamespace>
+        <RootNamespace>Dkw.Abp.OpenId.EntityFrameworkCore.PostgreSql</RootNamespace>
         <TargetFramework>net9.0</TargetFramework>
     </PropertyGroup>
 
@@ -17,7 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\DKW.Abp.OpenId.EntityFrameworkCore\DKW.Abp.OpenId.EntityFrameworkCore.csproj" />
+        <ProjectReference Include="..\Dkw.Abp.OpenId.EntityFrameworkCore\Dkw.Abp.OpenId.EntityFrameworkCore.csproj" />
     </ItemGroup>
 
 </Project>

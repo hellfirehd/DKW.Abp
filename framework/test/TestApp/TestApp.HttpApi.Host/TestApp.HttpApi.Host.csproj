@@ -8,8 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\src\DKW.Abp.Logging\DKW.Abp.Logging.csproj" />
-        <ProjectReference Include="..\..\..\src\DKW.Abp.Microservices\DKW.Abp.Microservice.csproj" />
+        <ProjectReference Include="..\..\..\src\Dkw.Abp.Logging\Dkw.Abp.Logging.csproj" />
+        <ProjectReference Include="..\..\..\src\Dkw.Abp.Microservices\Dkw.Abp.Microservice.csproj" />
         <ProjectReference Include="..\TestApp.Application\TestApp.Application.csproj" />
         <ProjectReference Include="..\TestApp.EntityFrameworkCore.Sqlite\TestApp.EntityFrameworkCore.Sqlite.csproj" />
         <ProjectReference Include="..\TestApp.HttpApi\TestApp.HttpApi.csproj" />

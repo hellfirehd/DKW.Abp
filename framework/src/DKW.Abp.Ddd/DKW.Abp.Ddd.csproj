@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <RootNamespace>DKW</RootNamespace>
+        <RootNamespace />
         <TargetFramework>net9.0</TargetFramework>
     </PropertyGroup>
 

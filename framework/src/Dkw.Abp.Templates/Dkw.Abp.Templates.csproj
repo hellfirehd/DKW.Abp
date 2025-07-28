@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Dkw.Abp.Templates.Contracts\DKW.Abp.Templates.Contracts.csproj" />
+      <ProjectReference Include="..\Dkw.Abp.Templates.Contracts\Dkw.Abp.Templates.Contracts.csproj" />
       <ProjectReference Include="..\Dkw.Abp\Dkw.Abp.csproj" />
     </ItemGroup>
 

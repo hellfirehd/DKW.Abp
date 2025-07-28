@@ -17,7 +17,7 @@
     </ItemGroup>
     
     <ItemGroup>
-      <ProjectReference Include="..\..\..\src\DKW.Abp.EntityFrameworkCore\DKW.Abp.EntityFrameworkCore.csproj" />
+      <ProjectReference Include="..\..\..\src\Dkw.Abp.EntityFrameworkCore\Dkw.Abp.EntityFrameworkCore.csproj" />
       <ProjectReference Include="..\TestApp.EntityFrameworkCore\TestApp.EntityFrameworkCore.csproj" />
     </ItemGroup>
     

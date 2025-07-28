@@ -11,7 +11,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Dkw.Abp.Emailing\Dkw.Abp.Emailing.csproj" />
-      <ProjectReference Include="..\Dkw.Abp.Templates.Contracts\DKW.Abp.Templates.Contracts.csproj" />
+      <ProjectReference Include="..\Dkw.Abp.Templates.Contracts\Dkw.Abp.Templates.Contracts.csproj" />
     </ItemGroup>
 
 </Project>
