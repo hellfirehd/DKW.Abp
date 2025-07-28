@@ -4,7 +4,7 @@
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
         <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
     </PropertyGroup>
-    <ItemGroup>        
+    <ItemGroup>
         <PackageVersion Include="Abstractions.Sass.CIBuild" Version="1.1.67" />
         <PackageVersion Include="AutoMapper" Version="[14.0.0]" />
         <PackageVersion Include="Blazored.FluentValidation" Version="2.2.0" />
@@ -12,8 +12,8 @@
         <PackageVersion Include="Blazored.Modal" Version="7.3.1" />
         <PackageVersion Include="Blazored.Toast" Version="4.2.1" />
         <PackageVersion Include="Blazored.Typeahead" Version="4.7.0" />
-        <PackageVersion Include="Blazorise.Bootstrap5" Version="1.6.2.0" />
-        <PackageVersion Include="Blazorise.Icons.FontAwesome" Version="1.6.2.0" />
+        <PackageVersion Include="Blazorise.Bootstrap5" Version="1.7.7" />
+        <PackageVersion Include="Blazorise.Icons.FontAwesome" Version="1.7.7" />
         <PackageVersion Include="Bogus" Version="35.6.3" />
         <PackageVersion Include="Bogus.Text" Version="35.6.3" />
         <PackageVersion Include="Bogus.Tools.Analyzer" Version="35.6.3" />
@@ -101,12 +101,12 @@
         <PackageVersion Include="NodaTime.Testing" Version="3.2.2" />
         <PackageVersion Include="NSubstitute" Version="5.3.0" />
         <PackageVersion Include="NSubstitute.Analyzers.CSharp" Version="1.0.17" />
-        <PackageVersion Include="OpenIddict" Version="6.2.1" />
-        <PackageVersion Include="OpenIddict.Abstractions" Version="6.2.1" />
-        <PackageVersion Include="OpenIddict.AspNetCore" Version="6.2.1" />
-        <PackageVersion Include="OpenIddict.EntityFrameworkCore" Version="6.2.1" />
-        <PackageVersion Include="OpenIddict.Quartz" Version="6.2.1" />
-        <PackageVersion Include="OpenIddict.Validation.SystemNetHttp" Version="6.2.1" />
+        <PackageVersion Include="OpenIddict" Version="[6.4.0]" />
+        <PackageVersion Include="OpenIddict.Abstractions" Version="[6.4.0]" />
+        <PackageVersion Include="OpenIddict.AspNetCore" Version="[6.4.0]" />
+        <PackageVersion Include="OpenIddict.EntityFrameworkCore" Version="[6.4.0]" />
+        <PackageVersion Include="OpenIddict.Quartz" Version="[6.4.0]" />
+        <PackageVersion Include="OpenIddict.Validation.SystemNetHttp" Version="[6.4.0]" />
         <PackageVersion Include="Quartz.Extensions.Hosting" Version="3.14.0" />
         <PackageVersion Include="QuestPDF" Version="2025.7.0" />
         <PackageVersion Include="RazorLight" Version="2.3.1" />
@@ -244,11 +244,11 @@
         <PackageVersion Include="Volo.Abp.TenantManagement.HttpApi" Version="9.2.3" />
         <PackageVersion Include="Volo.Abp.TenantManagement.HttpApi.Client" Version="9.2.3" />
         <PackageVersion Include="Volo.Abp.TestBase" Version="9.2.3" />
-        <PackageVersion Include="Volo.Abp.TextTemplating" Version="9.2.3" />        
-        <PackageVersion Include="Volo.Abp.TextTemplating.Core" Version="9.2.3" />        
-        <PackageVersion Include="Volo.Abp.TextTemplating.Razor" Version="9.2.3" />        
-        <PackageVersion Include="Volo.Abp.TextTemplating.Scriban" Version="9.2.3" />        
-        <PackageVersion Include="Volo.Abp.TextTemplating.Tests" Version="9.2.3" />        
+        <PackageVersion Include="Volo.Abp.TextTemplating" Version="9.2.3" />
+        <PackageVersion Include="Volo.Abp.TextTemplating.Core" Version="9.2.3" />
+        <PackageVersion Include="Volo.Abp.TextTemplating.Razor" Version="9.2.3" />
+        <PackageVersion Include="Volo.Abp.TextTemplating.Scriban" Version="9.2.3" />
+        <PackageVersion Include="Volo.Abp.TextTemplating.Tests" Version="9.2.3" />
         <PackageVersion Include="Volo.Abp.Validation" Version="9.2.3" />
         <PackageVersion Include="xunit" Version="2.9.3" />
         <PackageVersion Include="xunit.extensibility.execution" Version="2.9.3" />
