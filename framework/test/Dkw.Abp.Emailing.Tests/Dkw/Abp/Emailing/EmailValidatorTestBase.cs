@@ -14,8 +14,10 @@
 
 namespace Dkw.Abp.Emailing;
 
-public class EmailValidatorTests
+public abstract class EmailValidatorTestBase
 {
+    protected abstract IEmailValidator Validator { get; }
+
     [Theory]
     [InlineData("test@example.org")]
     [InlineData("prettyandsimple@example.org")]
@@ -31,17 +33,13 @@ public class EmailValidatorTests
     [InlineData("\" \"@example.org")]
     [InlineData("\" \".\" \"@example.org")]
     [InlineData("example@s.solutions")]
-    [InlineData("admin@mailserver1", true)]
-    [InlineData("example@localhost", true)]
-    [InlineData("user@com", true)]
-    [InlineData("user@localserver", true)]
     [InlineData("~`!#$%^&*'-_=+/?{|}@gmail.com")] // WTF!?
     [InlineData("user@[IPv6:2001:db8::1]")]
     [InlineData("user@[IPv6:2001:db8:1ff::a0b:dbd0]")]
     [InlineData("user@192.168.1.1")]
-    public void Valid(String email, Boolean allowLocal = false, Boolean allowInternational = false)
+    public void Valid(String email)
     {
-        new EmailValidator().IsValid(email, allowLocal, allowInternational).ShouldBeTrue();
+        Validator.IsValid(email).ShouldBeTrue();
     }
 
     [Theory]
@@ -58,99 +56,99 @@ public class EmailValidatorTests
     [InlineData("user@[192.168.1.1]")]
     [InlineData("user@[IPv6:2001:db8:::1]")] // Too many consecutive colons
     [InlineData("user@[IPv6:2001:db8:1ff::a0b:dbd0")] // Missing trailing ] literal.
-    public void Invalid(String email, Boolean allowLocal = false, Boolean allowInternational = false)
+    public void Invalid(String email)
     {
-        new EmailValidator().IsValid(email, allowLocal, allowInternational).ShouldBeFalse();
+        Validator.IsValid(email).ShouldBeFalse();
     }
 
     [Fact]
     public void Consecutive_dots_in_domain_should_return_False()
     {
-        new EmailValidator().IsValid("test@example..com").ShouldBeFalse();
+        Validator.IsValid("test@example..com").ShouldBeFalse();
     }
 
     [Fact]
     public void Consecutive_dots_in_local_part_should_return_False()
     {
         // caveat: Gmail lets this next one through
-        new EmailValidator().IsValid("test..user@example.org").ShouldBeFalse();
+        Validator.IsValid("test..user@example.org").ShouldBeFalse();
     }
 
     [Fact]
     public void Empty_Email_should_return_False()
     {
-        new EmailValidator().IsValid(String.Empty).ShouldBeFalse();
+        Validator.IsValid(String.Empty).ShouldBeFalse();
     }
 
     [Fact]
     public void Invalid_LocalPart_Valid_Domain_Email_should_return_False()
     {
-        new EmailValidator().IsValid("test@.com").ShouldBeFalse();
+        Validator.IsValid("test@.com").ShouldBeFalse();
     }
 
     [Fact]
     public void Local_part_ending_with_a_dot_should_return_False()
     {
-        new EmailValidator().IsValid("test.@example.org").ShouldBeFalse();
+        Validator.IsValid("test.@example.org").ShouldBeFalse();
     }
 
     [Fact]
     public void Local_part_starting_with_a_dot_should_return_False()
     {
-        new EmailValidator().IsValid(".test@example..com").ShouldBeFalse();
+        Validator.IsValid(".test@example..com").ShouldBeFalse();
     }
 
     [Fact]
     public void Local_part_with_plus_addressing_should_return_True()
     {
-        new EmailValidator().IsValid("john+doe@gmail.com").ShouldBeTrue();
+        Validator.IsValid("john+doe@gmail.com").ShouldBeTrue();
     }
 
     [Fact]
     public void Local_part_quoted_with_escaped_special_char_should_return_True()
     {
-        new EmailValidator().IsValid("\"a\\@b\"@example.org").ShouldBeTrue();
+        Validator.IsValid("\"a\\@b\"@example.org").ShouldBeTrue();
     }
 
     [Fact]
     public void Non_Email_should_return_False()
     {
-        new EmailValidator().IsValid("invalid_email").ShouldBeFalse();
+        Validator.IsValid("invalid_email").ShouldBeFalse();
     }
 
     [Fact]
     public void Null_Email_should_return_False()
     {
-        new EmailValidator().IsValid((String)null!).ShouldBeFalse();
+        Validator.IsValid((String)null!).ShouldBeFalse();
     }
 
     [Fact]
     public void Quoted_special_characters_should_return_True()
     {
-        new EmailValidator().IsValid("\"test!\"@example.org").ShouldBeTrue();
+        Validator.IsValid("\"test!\"@example.org").ShouldBeTrue();
     }
 
     [Fact]
     public void Unquoted_special_characters_should_return_False()
     {
-        new EmailValidator().IsValid("te,st@example.org").ShouldBeFalse();
+        Validator.IsValid("te,st@example.org").ShouldBeFalse();
     }
 
     [Fact]
     public void Valid_LocalPart_Invalid_Domain_Email_should_return_False()
     {
-        new EmailValidator().IsValid("test@example!").ShouldBeFalse();
+        Validator.IsValid("test@example!").ShouldBeFalse();
     }
 
     [Fact]
     public void Valid_LocalPart_Valid_Domain_Email_should_return_True()
     {
-        new EmailValidator().IsValid("john.doe@gmail.com").ShouldBeTrue();
+        Validator.IsValid("john.doe@gmail.com").ShouldBeTrue();
     }
 
     [Fact]
     public void WhiteSpace_Email_should_return_False()
     {
-        new EmailValidator().IsValid("  ").ShouldBeFalse();
+        Validator.IsValid("  ").ShouldBeFalse();
     }
 }
