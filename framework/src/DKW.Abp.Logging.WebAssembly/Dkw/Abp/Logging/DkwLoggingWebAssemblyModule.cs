@@ -4,7 +4,6 @@ using Microsoft.JSInterop;
 using Serilog;
 using Serilog.Enrichers;
 using Serilog.Events;
-using System.Globalization;
 using Volo.Abp;
 using Volo.Abp.Autofac.WebAssembly;
 using Volo.Abp.DependencyInjection;

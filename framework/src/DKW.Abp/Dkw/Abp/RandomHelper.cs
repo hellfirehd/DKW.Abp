@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Dkw.Abp;
+﻿namespace Dkw.Abp;
 
 /// <summary>
 /// A shortcut to use <see cref="Random"/> class.

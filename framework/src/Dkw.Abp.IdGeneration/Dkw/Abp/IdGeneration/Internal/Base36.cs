@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using System.Globalization;
 using System.Numerics;
 
 namespace Dkw.Abp.IdGeneration.Internal;

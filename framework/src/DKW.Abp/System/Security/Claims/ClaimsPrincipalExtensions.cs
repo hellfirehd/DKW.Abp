@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace System.Security.Claims;
+﻿namespace System.Security.Claims;
 
 public static class ClaimsPrincipalExtensions
 {

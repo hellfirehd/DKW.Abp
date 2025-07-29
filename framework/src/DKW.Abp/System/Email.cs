@@ -13,8 +13,6 @@
 // program. If not, see <https://www.gnu.org/licenses/>.
 
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Xml;
