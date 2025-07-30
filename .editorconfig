@@ -260,3 +260,9 @@ dotnet_style_require_accessibility_modifiers = for_non_interface_members:silent
 dotnet_style_allow_multiple_blank_lines_experimental = false:suggestion
 dotnet_style_allow_statement_immediately_after_block_experimental = false:suggestion
 insert_final_newline = true
+
+[*.{cs,js,ts}]
+file_header_template = DKW ABP Framework Extensions\nCopyright (C) 2025 Doug Wilson\n\nThis program is free software: you can redistribute it and/or modify it under the terms of\nthe GNU Affero General Public License as published by the Free Software Foundation, either\nversion 3 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY\nwithout even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\nSee the GNU Affero General Public License for more details.\n\nYou should have received a copy of the GNU Affero General Public License along with this\nprogram. If not, see <https://www.gnu.org/licenses/>.
+
+[*]
+charset: utf-8
