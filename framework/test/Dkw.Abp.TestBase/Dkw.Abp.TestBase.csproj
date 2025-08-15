@@ -3,8 +3,8 @@
     <PropertyGroup>
         <RootNamespace />
         <TargetFramework>net9.0</TargetFramework>
-        <IsTestProject>true</IsTestProject>
         <IsPackable>false</IsPackable>
+        <IsTestProject>false</IsTestProject>
     </PropertyGroup>
 
     <ItemGroup>
